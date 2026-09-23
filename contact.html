@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Request a Bid | N&amp;G Solutions Services LLC</title>
+  
+  <!-- Favicon (Logo) -->
+  <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+  <link rel="apple-touch-icon" href="images/favicon.jpg">
+
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact Us &amp; Request a Bid | N&amp;G Solutions Services LLC">
+  <meta property="og:description" content="Request a project bid or consultation for underground utilities, directional drilling, fiber optics, gas, power, water, and sewer across Illinois and the Midwest. Call (847) 385-1702!">
+  <meta property="og:image" content="images/logo.jpg">
+
+  <!-- Twitter Meta Preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Us &amp; Request a Bid | N&amp;G Solutions Services LLC">
+  <meta property="twitter:description" content="Request a project bid or consultation for underground utilities, directional drilling, fiber optics, gas, power, water, and sewer across Illinois and the Midwest. Call (847) 385-1702!">
+  <meta name="twitter:image" content="images/logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css?v=4.0">
+</head>
+<body>
+
+  <!-- Top Utility Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-location-dot"></i> Serving Illinois &amp; the Greater Midwest (IN, IA, WI, MO)</span>
+        <span><i class="fa-solid fa-shield-halved"></i> Certified Underground Utility Contractors • Free Project Estimates</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="tel:8473851702"><i class="fa-solid fa-phone"></i> (847) 385-1702</a>
+        <a href="mailto:ngsolutionsservicesllc@gmail.com"><i class="fa-regular fa-envelope"></i> ngsolutionsservicesllc@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.jpg" alt="N&amp;G Solutions Services LLC Logo" class="logo-img-mark" width="52" height="52" style="border-radius: 8px; object-fit: cover;">
+        <div class="logo-text">
+          <span class="logo-title">N&amp;G SOLUTIONS</span>
+          <span class="logo-subtitle" style="letter-spacing: 0.12em; color: var(--accent-blue);">SERVICES LLC</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#services" class="nav-link">Services</a></li>
+          <li><a href="index.html#territory" class="nav-link">Midwest Coverage</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="tel:8473851702" class="btn btn-green btn-sm"><i class="fa-solid fa-phone"></i> (847) 385-1702</a>
+          <a href="contact.html" class="btn btn-primary btn-sm">Request a Bid</a>
+          <button class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" style="font-size: 0.7rem;"></i>
+        <span>Contact</span>
+      </nav>
+      <div class="heading-reveal-mask">
+        <h1>Contact Us &amp; Request a Project Bid</h1>
+      </div>
+      <p>Professional underground utility solutions for municipalities, general contractors, developers, and utility providers across Illinois and the Midwest.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="contact-grid">
+        
+        <!-- Quote / Bid Request Form -->
+        <div class="form-card">
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;">Free Project Estimate</span>
+          <h2>Submit Project Details</h2>
+          <p class="form-subtitle">Fill out the form below or call directly at <strong>(847) 385-1702</strong> for immediate project coordination.</p>
+
+          <div id="formStatus" class="form-status"></div>
+
+          <form id="contactQuoteForm" action="https://formsubmit.co/ngsolutionsservicesllc@gmail.com" method="POST">
+            <!-- FormSubmit Options -->
+            <input type="hidden" name="_subject" value="New Utility Project Bid Request - N&G Solutions Services LLC">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="fullName" class="form-label">Full Name *</label>
+                <input type="text" id="fullName" name="Name" class="form-control" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="companyName" class="form-label">Company / Municipality (Optional)</label>
+                <input type="text" id="companyName" name="Company" class="form-control" placeholder="Company or Agency Name">
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number *</label>
+                <input type="tel" id="phone" name="Phone" class="form-control" placeholder="(847) 000-0000" required>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address *</label>
+                <input type="email" id="email" name="Email" class="form-control" placeholder="name@company.com" required>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="cityLocation" class="form-label">Project Location (City, State) *</label>
+                <input type="text" id="cityLocation" name="Project Location" class="form-control" placeholder="e.g. Chicago, IL or Indianapolis, IN" required>
+              </div>
+              <div class="form-group">
+                <label for="serviceType" class="form-label">Primary Utility Service Needed</label>
+                <select id="serviceType" name="Service Type" class="form-control">
+                  <option value="Telecommunications & Fiber Optics">Telecommunications &amp; Fiber Optics</option>
+                  <option value="Gas Distribution & Pipelines">Gas Distribution &amp; Pipelines</option>
+                  <option value="Power & Electrical Duct Banks">Power &amp; Electrical Underground</option>
+                  <option value="Water Mains & Distribution">Water Mains &amp; Distribution</option>
+                  <option value="Sanitary Sewer & Storm Drainage">Sanitary Sewer &amp; Storm Drainage</option>
+                  <option value="Horizontal Directional Drilling (HDD)">Horizontal Directional Drilling (HDD)</option>
+                  <option value="Turnkey Multi-Utility Package">Turnkey Multi-Utility Package</option>
+                  <option value="Emergency Utility Repair">Emergency Utility Repair</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="projectSector" class="form-label">Project Sector / Scope</label>
+                <select id="projectSector" name="Sector" class="form-control">
+                  <option value="Commercial / Industrial Infrastructure">Commercial / Industrial Infrastructure</option>
+                  <option value="Municipal / Civil Works">Municipal / Civil Works</option>
+                  <option value="Subcontracting / General Contractor Partner">Subcontracting / GC Partner</option>
+                  <option value="Residential Development Utility Tie-In">Residential Development Utility Tie-In</option>
+                  <option value="Emergency Utility Response">Emergency Utility Response</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="targetDate" class="form-label">Target Start Date</label>
+                <input type="text" id="targetDate" name="Target Date" class="form-control" placeholder="e.g. Immediate / Next Month / Q4">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Project Scope &amp; Specifications</label>
+              <textarea id="message" name="Project Details" class="form-control" rows="4" placeholder="Describe the utility requirements (footage, pipe/conduit size, depth, surface conditions, permits, or directional boring needs)."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Submit Request for Project Bid
+            </button>
+          </form>
+        </div>
+
+        <!-- Sidebar Contact Info -->
+        <div class="contact-sidebar">
+          
+          <div class="contact-info-card">
+            <h3>Direct Contact</h3>
+            <div class="contact-items">
+              
+              <div class="contact-item">
+                <div class="contact-item-icon" style="background-color: var(--brand-green-light); color: var(--brand-green);">
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div class="contact-item-text">
+                  <h4>Phone (Direct)</h4>
+                  <p><a href="tel:8473851702" style="font-weight: 700; color: var(--primary-blue); font-size: 1.05rem;">(847) 385-1702</a></p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div class="contact-item-text">
+                  <h4>Email</h4>
+                  <p><a href="mailto:ngsolutionsservicesllc@gmail.com" style="word-break: break-all;">ngsolutionsservicesllc@gmail.com</a></p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon">
+                  <i class="fa-solid fa-clock"></i>
+                </div>
+                <div class="contact-item-text">
+                  <h4>Operations &amp; Mobilization</h4>
+                  <p><strong>Scheduled Bids:</strong> Mon – Fri: 7:00 AM – 5:00 PM</p>
+                  <p><strong>Emergency Response:</strong> 24/7 Rapid Dispatch</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Service Coverage Box -->
+          <div class="coverage-box">
+            <h4>Midwest Regional Coverage</h4>
+            <p>Deploying specialized underground utility crews and directional drilling rigs across:</p>
+            <div class="coverage-tags">
+              <span class="coverage-tag">Illinois (Statewide)</span>
+              <span class="coverage-tag">Chicago Metro</span>
+              <span class="coverage-tag">Indiana</span>
+              <span class="coverage-tag">Iowa</span>
+              <span class="coverage-tag">Wisconsin</span>
+              <span class="coverage-tag">Missouri</span>
+              <span class="coverage-tag">Midwest Corridors</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.88rem; color: var(--text-muted);">
+              Need cross-state utility pipeline or fiber conduit installation? Call our operations desk directly at <strong>(847) 385-1702</strong>.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-compact-wrap">
+        <!-- Brand & Slogan -->
+        <div class="footer-brand-compact">
+          <a href="index.html" class="logo-link">
+            <img src="images/logo.jpg" alt="N&amp;G Solutions Services LLC" class="logo-img-mark" width="44" height="44" style="border-radius: 6px; object-fit: cover;">
+            <div class="logo-text">
+              <span class="logo-title" style="color: #ffffff; font-size: 1.05rem;">N&amp;G SOLUTIONS</span>
+              <span class="logo-subtitle" style="color: var(--accent-blue); font-size: 0.72rem; letter-spacing: 0.1em;">SERVICES LLC</span>
+            </div>
+          </a>
+          <p>
+            Underground utilities and civil infrastructure contractors specializing in telecommunications, natural gas, electric power, water, sewer, and directional drilling across the Midwest.
+          </p>
+          <div class="footer-hours-pill">
+            <i class="fa-regular fa-clock"></i>
+            <span>Mon–Fri 7am–5pm &bull; 24/7 Emergency Response</span>
+          </div>
+        </div>
+
+        <!-- Quick Horizontal Nav Links -->
+        <nav class="footer-nav-compact" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#territory">Midwest Coverage</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <!-- Direct Actions & Socials -->
+        <div class="footer-contact-compact">
+          <a href="tel:8473851702" class="footer-phone-pill" title="Call for project consultation">
+            <i class="fa-solid fa-phone"></i> (847) 385-1702
+          </a>
+          <div class="footer-socials">
+            <a href="mailto:ngsolutionsservicesllc@gmail.com" class="social-link" aria-label="Email Us"><i class="fa-regular fa-envelope"></i></a>
+            <a href="tel:8473851702" class="social-link" aria-label="Call Us"><i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 N&amp;G Solutions Services LLC. All rights reserved. | Underground Utility &amp; Infrastructure Services</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=4.0"></script>
+</body>
+</html>
