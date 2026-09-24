@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         if (statusBox) {
           statusBox.className = 'form-status error';
-          statusBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> <strong>Note:</strong> We couldn\'t submit online at this moment. Please call our office directly at <a href="tel:8473851702" style="color: inherit; text-decoration: underline; font-weight: 700;">(847) 385-1702</a> or email <a href="mailto:ngsolutionsservicesllc@gmail.com" style="color: inherit; text-decoration: underline; font-weight: 700;">ngsolutionsservicesllc@gmail.com</a>.';
+          statusBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> <strong>Note:</strong> We couldn\'t submit online at this moment. Please call our office directly at <a href="tel:2246338813" style="color: inherit; text-decoration: underline; font-weight: 700;">(224) 633-8813</a> or email <a href="mailto:ngsolutionsservicesllc@gmail.com" style="color: inherit; text-decoration: underline; font-weight: 700;">ngsolutionsservicesllc@gmail.com</a>.';
           statusBox.style.display = 'block';
           statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
