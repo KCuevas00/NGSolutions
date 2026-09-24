@@ -1348,6 +1348,9 @@ section[id], div[id] {
 @media (max-width: 680px) {
   .video-grid {
     grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -1370,8 +1373,9 @@ section[id], div[id] {
 
 .video-player-wrap {
   position: relative;
-  background: #000000;
-  height: 380px;
+  background: #020b14;
+  aspect-ratio: 9 / 16;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1381,8 +1385,9 @@ section[id], div[id] {
 .video-player-wrap video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  background: #020b14;
 }
 
 .video-card-body {
