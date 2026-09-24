@@ -2110,7 +2110,7 @@ textarea.form-control {
   margin-top: 2px;
 }
 
-/* Commercial Tier Dark Accent Card (High-Contrast 24/7 Response) */
+/* Commercial Tier Dark Accent Card (Estimates & Project Bids) */
 .editorial-card.commercial-tier {
   background: linear-gradient(145deg, #07223b 0%, #0c3154 50%, #051829 100%);
   border: 1px solid rgba(0, 164, 228, 0.35);
