@@ -25,7 +25,91 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=4.0">
+  <link rel="stylesheet" href="css/style.css?v=5.1">
+  <style>
+    /* Direct Video Play Button Overlay - High Visibility & Guaranteed Render */
+    .gallery-tile.is-video {
+      position: relative !important;
+      cursor: pointer;
+    }
+    .gallery-tile.is-video::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 80%);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .video-play-btn {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: 68px !important;
+      height: 68px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      pointer-events: none !important;
+      z-index: 10 !important;
+    }
+    .play-pulse-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(0, 164, 228, 0.75);
+      animation: playPulse 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+      pointer-events: none;
+    }
+    @keyframes playPulse {
+      0% { transform: scale(0.9); opacity: 0.95; }
+      65% { transform: scale(1.38); opacity: 0; }
+      100% { transform: scale(1.48); opacity: 0; }
+    }
+    .play-btn-circle {
+      width: 62px !important;
+      height: 62px !important;
+      border-radius: 50% !important;
+      background: rgba(7, 21, 38, 0.88) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 2.5px solid #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.65), 0 0 16px rgba(0, 164, 228, 0.4) !important;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+    .play-svg-icon {
+      width: 26px !important;
+      height: 26px !important;
+      fill: #ffffff !important;
+      margin-left: 3px !important;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    .gallery-tile.is-video:hover .play-btn-circle {
+      background: #0072ce !important;
+      border-color: #ffffff !important;
+      transform: scale(1.15) !important;
+      box-shadow: 0 10px 35px rgba(0, 114, 206, 0.8), 0 0 25px rgba(114, 212, 255, 0.9) !important;
+    }
+    @media (max-width: 768px) {
+      .video-play-btn {
+        width: 52px !important;
+        height: 52px !important;
+      }
+      .play-btn-circle {
+        width: 48px !important;
+        height: 48px !important;
+        border-width: 2px !important;
+      }
+      .play-svg-icon {
+        width: 20px !important;
+        height: 20px !important;
+        margin-left: 2px !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -269,6 +353,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=4.0"></script>
+  <script src="js/main.js?v=5.1"></script>
 </body>
 </html>
