@@ -480,6 +480,16 @@ section[id], div[id] {
   scroll-margin-top: 85px;
 }
 
+#service-area {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+  #service-area {
+    scroll-margin-top: 88px;
+  }
+}
+
 /* ==========================================================================
    PAGE HERO / SUBPAGE BANNER
    ========================================================================== */
