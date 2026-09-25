@@ -577,12 +577,15 @@ section[id], div[id] {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(
-    180deg,
-    rgba(7, 34, 59, 0.72) 0%,
-    rgba(7, 34, 59, 0.48) 45%,
-    rgba(7, 34, 59, 0.88) 100%
-  );
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%2300a4e4' stroke-width='1' stroke-opacity='0.08' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Cpath d='M0 120h35l25-25h40l20 20h40'/%3E%3Cpath d='M120 0v30l-20 20v40l25 25v45'/%3E%3Ccircle cx='45' cy='40' r='3'/%3E%3Ccircle cx='120' cy='45' r='3'/%3E%3Ccircle cx='70' cy='65' r='3'/%3E%3Ccircle cx='60' cy='95' r='3'/%3E%3Ccircle cx='100' cy='95' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(
+      180deg,
+      rgba(7, 34, 59, 0.72) 0%,
+      rgba(7, 34, 59, 0.48) 45%,
+      rgba(7, 34, 59, 0.88) 100%
+    );
+  background-size: 160px 160px, 100% 100%;
   backdrop-filter: blur(1px);
 }
 
@@ -722,7 +725,11 @@ section[id], div[id] {
 }
 
 .stats-strip {
-  background: linear-gradient(135deg, #07223b 0%, #0d365e 55%, #05192c 100%);
+  background-color: #07223b;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%2300a4e4' stroke-width='1.2' stroke-opacity='0.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Cpath d='M0 120h35l25-25h40l20 20h40'/%3E%3Cpath d='M120 0v30l-20 20v40l25 25v45'/%3E%3Ccircle cx='45' cy='40' r='3.5'/%3E%3Ccircle cx='45' cy='40' r='1.2' fill='%2372d4ff' fill-opacity='0.25'/%3E%3Ccircle cx='120' cy='45' r='3.5'/%3E%3Ccircle cx='120' cy='45' r='1.2' fill='%2372d4ff' fill-opacity='0.25'/%3E%3Ccircle cx='70' cy='65' r='3.5'/%3E%3Ccircle cx='70' cy='65' r='1.2' fill='%2372d4ff' fill-opacity='0.25'/%3E%3Ccircle cx='60' cy='95' r='3.5'/%3E%3Ccircle cx='60' cy='95' r='1.2' fill='%2372d4ff' fill-opacity='0.25'/%3E%3Ccircle cx='100' cy='95' r='3.5'/%3E%3Ccircle cx='100' cy='95' r='1.2' fill='%2372d4ff' fill-opacity='0.25'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, #07223b 0%, #0d365e 55%, #05192c 100%);
+  background-size: 160px 160px, 100% 100%;
   padding: 2.25rem 1.5rem;
   box-shadow: 0 18px 45px rgba(4, 21, 38, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(0, 164, 228, 0.3);
@@ -788,7 +795,11 @@ section[id], div[id] {
 }
 
 .section-light {
-  background: linear-gradient(180deg, #edf4f9 0%, #e2ecf5 50%, #edf4f9 100%);
+  background-color: #edf4f9;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23004b7a' stroke-width='1.2' stroke-opacity='0.075' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Cpath d='M0 120h35l25-25h40l20 20h40'/%3E%3Cpath d='M120 0v30l-20 20v40l25 25v45'/%3E%3Ccircle cx='45' cy='40' r='3.5'/%3E%3Ccircle cx='45' cy='40' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='120' cy='45' r='3.5'/%3E%3Ccircle cx='120' cy='45' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='70' cy='65' r='3.5'/%3E%3Ccircle cx='70' cy='65' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='60' cy='95' r='3.5'/%3E%3Ccircle cx='60' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='100' cy='95' r='3.5'/%3E%3Ccircle cx='100' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(180deg, #edf4f9 0%, #e2ecf5 50%, #edf4f9 100%);
+  background-size: 160px 160px, 100% 100%;
 }
 
 .section-white {
@@ -1884,11 +1895,11 @@ textarea.form-control {
    ========================================================================== */
 .editorial-territory-section {
   position: relative;
-  background-color: #f8fbfe;
+  background-color: #edf4f9;
   background-image: 
-    radial-gradient(rgba(0, 102, 178, 0.06) 1.2px, transparent 1.2px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23004b7a' stroke-width='1.2' stroke-opacity='0.075' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Cpath d='M0 120h35l25-25h40l20 20h40'/%3E%3Cpath d='M120 0v30l-20 20v40l25 25v45'/%3E%3Ccircle cx='45' cy='40' r='3.5'/%3E%3Ccircle cx='45' cy='40' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='120' cy='45' r='3.5'/%3E%3Ccircle cx='120' cy='45' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='70' cy='65' r='3.5'/%3E%3Ccircle cx='70' cy='65' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='60' cy='95' r='3.5'/%3E%3Ccircle cx='60' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='100' cy='95' r='3.5'/%3E%3Ccircle cx='100' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3C/g%3E%3C/svg%3E"),
     linear-gradient(180deg, #f8fbfe 0%, #edf4f9 100%);
-  background-size: 28px 28px, 100% 100%;
+  background-size: 160px 160px, 100% 100%;
   padding: 6rem 0;
   overflow: hidden;
   border-top: 1px solid rgba(0, 102, 178, 0.08);
