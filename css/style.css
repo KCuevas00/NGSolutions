@@ -483,26 +483,32 @@ section[id], div[id] {
 /* ==========================================================================
    PAGE HERO / SUBPAGE BANNER
    ========================================================================== */
-.page-banner {
+.page-banner,
+.gallery-hero-banner {
   background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-dark) 60%, var(--primary-blue) 100%);
   color: #ffffff;
   margin-top: -84px;
-  padding: calc(84px + 3.5rem) 0 3.25rem;
+  padding: calc(84px + 2.5rem) 0 2.25rem;
   position: relative;
   overflow: hidden;
 }
 
-.page-banner h1 {
+.page-banner h1,
+.gallery-hero-banner h1 {
   color: #ffffff;
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
   font-weight: 800;
-  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.15;
 }
 
 .page-banner p {
   color: rgba(255, 255, 255, 0.88);
   font-size: 1.1rem;
   max-width: 650px;
+  margin-top: 0.5rem;
 }
 
 .breadcrumb {
@@ -510,12 +516,13 @@ section[id], div[id] {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: rgba(255, 255, 255, 0.65);
 }
 
 .breadcrumb a {
   color: rgba(255, 255, 255, 0.85);
+  transition: color var(--transition-fast);
 }
 
 .breadcrumb a:hover {
@@ -1303,11 +1310,13 @@ section[id], div[id] {
 }
 
 @media (max-width: 768px) {
+  .page-banner,
   .gallery-hero-banner {
     margin-top: -76px;
-    padding: calc(76px + 2rem) 1rem 1.75rem;
+    padding: calc(76px + 1.75rem) 0 1.75rem;
   }
 
+  .page-banner h1,
   .gallery-hero-banner h1 {
     font-size: 2.15rem;
   }
