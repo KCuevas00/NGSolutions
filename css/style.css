@@ -1256,29 +1256,7 @@ section[id], div[id] {
 }
 
 /* Subtle continuous radar pulse ring */
-.play-pulse-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid rgba(0, 164, 228, 0.65);
-  animation: playPulse 2.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
-  pointer-events: none;
-}
 
-@keyframes playPulse {
-  0% {
-    transform: scale(0.92);
-    opacity: 0.9;
-  }
-  65% {
-    transform: scale(1.38);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.48);
-    opacity: 0;
-  }
-}
 
 .play-btn-circle {
   width: 62px;
@@ -1314,11 +1292,6 @@ section[id], div[id] {
 
 .gallery-tile.is-video:hover .play-svg-icon {
   transform: scale(1.08);
-}
-
-.gallery-tile.is-video:hover .play-pulse-ring {
-  border-color: rgba(255, 255, 255, 0.85);
-  animation-duration: 1.5s;
 }
 
 /* Responsive Grid Columns */
@@ -1359,10 +1332,6 @@ section[id], div[id] {
     width: 18px;
     height: 18px;
     margin: 0;
-  }
-
-  .play-pulse-ring {
-    inset: -4px;
   }
 }
 
