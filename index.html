@@ -80,75 +80,10 @@
       <video id="heroVideoA" class="hero-video-element active" autoplay muted playsinline webkit-playsinline preload="none" src="videos/townhouse-6unit-conduit-install.mp4"></video>
       <video id="heroVideoB" class="hero-video-element" muted playsinline webkit-playsinline preload="none"></video>
       <div class="hero-video-overlay"></div>
-
-      <!-- Motherboard Circuit Trace Overlay (Desktop & Tablet) -->
-      <div class="hero-pcb-overlay" aria-hidden="true">
-        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="hero-pcb-svg" xmlns="http://www.w3.org/2000/svg">
-          <!-- Left Motherboard Bus -->
-          <g>
-            <path class="pcb-trace" d="M 0 140 L 140 140 L 220 220 L 320 220 L 360 260 L 360 480 L 310 530 L 220 530 L 150 600 L 0 600" />
-            <path class="pcb-trace" d="M 0 200 L 100 200 L 170 270 L 270 270 L 300 300 L 300 440 L 260 480 L 160 480 L 90 550 L 0 550" />
-            <path class="pcb-trace-subtle" d="M 0 260 L 60 260 L 120 320 L 210 320 L 240 350 L 240 420 L 210 450 L 110 450 L 0 560" />
-            
-            <!-- Animated Left Data Pulses -->
-            <path class="pcb-pulse" d="M 0 140 L 140 140 L 220 220 L 320 220 L 360 260 L 360 480 L 310 530 L 220 530 L 150 600 L 0 600" />
-            <path class="pcb-pulse pulse-delay-1" d="M 0 200 L 100 200 L 170 270 L 270 270 L 300 300 L 300 440 L 260 480 L 160 480 L 90 550 L 0 550" />
-            
-            <!-- IC Chip Footprint Left -->
-            <rect x="340" y="320" width="38" height="80" rx="3" class="pcb-chip-rect" />
-            <text x="347" y="365" class="pcb-chip-text" transform="rotate(-90 347 365)">IC-811</text>
-            <line x1="328" y1="335" x2="340" y2="335" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="328" y1="350" x2="340" y2="350" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="328" y1="365" x2="340" y2="365" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="328" y1="380" x2="340" y2="380" stroke="#00a4e4" stroke-width="1.5"/>
-            
-            <!-- Solder Vias Left -->
-            <circle cx="320" cy="220" r="4.5" class="pcb-via"/><circle cx="320" cy="220" r="1.5" class="pcb-via-dot"/>
-            <circle cx="360" cy="260" r="4.5" class="pcb-via"/><circle cx="360" cy="260" r="1.5" class="pcb-via-dot"/>
-            <circle cx="360" cy="480" r="4.5" class="pcb-via"/><circle cx="360" cy="480" r="1.5" class="pcb-via-dot"/>
-            <circle cx="270" cy="270" r="4.5" class="pcb-via"/><circle cx="270" cy="270" r="1.5" class="pcb-via-dot"/>
-            <circle cx="260" cy="480" r="4.5" class="pcb-via"/><circle cx="260" cy="480" r="1.5" class="pcb-via-dot"/>
-          </g>
-
-          <!-- Right Motherboard Bus -->
-          <g>
-            <path class="pcb-trace" d="M 1600 160 L 1460 160 L 1380 240 L 1280 240 L 1240 280 L 1240 500 L 1290 550 L 1390 550 L 1460 620 L 1600 620" />
-            <path class="pcb-trace" d="M 1600 220 L 1500 220 L 1420 300 L 1320 300 L 1290 330 L 1290 460 L 1330 500 L 1440 500 L 1510 570 L 1600 570" />
-            <path class="pcb-trace-subtle" d="M 1600 280 L 1530 280 L 1470 340 L 1380 340 L 1350 370 L 1350 440 L 1380 470 L 1480 470 L 1600 590" />
-            
-            <!-- Animated Right Data Pulses -->
-            <path class="pcb-pulse pulse-delay-2" d="M 1600 160 L 1460 160 L 1380 240 L 1280 240 L 1240 280 L 1240 500 L 1290 550 L 1390 550 L 1460 620 L 1600 620" />
-            <path class="pcb-pulse" d="M 1600 220 L 1500 220 L 1420 300 L 1320 300 L 1290 330 L 1290 460 L 1330 500 L 1440 500 L 1510 570 L 1600 570" />
-            
-            <!-- IC Chip Footprint Right -->
-            <rect x="1222" y="340" width="38" height="80" rx="3" class="pcb-chip-rect" />
-            <text x="1229" y="385" class="pcb-chip-text" transform="rotate(-90 1229 385)">BUS-Q4</text>
-            <line x1="1260" y1="355" x2="1272" y2="355" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="1260" y1="370" x2="1272" y2="370" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="1260" y1="385" x2="1272" y2="385" stroke="#00a4e4" stroke-width="1.5"/>
-            <line x1="1260" y1="400" x2="1272" y2="400" stroke="#00a4e4" stroke-width="1.5"/>
-
-            <!-- Solder Vias Right -->
-            <circle cx="1280" cy="240" r="4.5" class="pcb-via"/><circle cx="1280" cy="240" r="1.5" class="pcb-via-dot"/>
-            <circle cx="1240" cy="280" r="4.5" class="pcb-via"/><circle cx="1240" cy="280" r="1.5" class="pcb-via-dot"/>
-            <circle cx="1240" cy="500" r="4.5" class="pcb-via"/><circle cx="1240" cy="500" r="1.5" class="pcb-via-dot"/>
-            <circle cx="1320" cy="300" r="4.5" class="pcb-via"/><circle cx="1320" cy="300" r="1.5" class="pcb-via-dot"/>
-            <circle cx="1330" cy="500" r="4.5" class="pcb-via"/><circle cx="1330" cy="500" r="1.5" class="pcb-via-dot"/>
-          </g>
-        </svg>
-      </div>
     </div>
 
     <!-- Hero Content -->
     <div class="hero-video-content">
-      <div class="hero-tech-telemetry">
-        <span class="telemetry-item"><i class="fa-solid fa-bolt"></i> SYS: ACTIVE</span>
-        <span class="telemetry-sep">//</span>
-        <span class="telemetry-item"><i class="fa-solid fa-microchip"></i> UNDERGROUND INFRASTRUCTURE</span>
-        <span class="telemetry-sep">//</span>
-        <span class="telemetry-item"><i class="fa-solid fa-tower-broadcast"></i> 811 LOCATE READY</span>
-      </div>
-
       <h1 class="hero-giant-title">
         Underground Utilities &amp; Infrastructure
         <span class="text-highlight">Built with Precision</span>
@@ -172,11 +107,6 @@
   <!-- Quick Info Bar (Coverage & Consultations) -->
   <div class="stats-strip-container">
     <div class="stats-strip">
-      <span class="pcb-corner pcb-corner-tl"></span>
-      <span class="pcb-corner pcb-corner-tr"></span>
-      <span class="pcb-corner pcb-corner-bl"></span>
-      <span class="pcb-corner pcb-corner-br"></span>
-
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-number">Free</div>
@@ -190,20 +120,6 @@
           <div class="stat-number stat-services-headline">Telecom &bull; Gas &bull; Power</div>
           <div class="stat-label stat-services-sub">Water, Sewer &amp; Horizontal Directional Drilling (HDD)</div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Motherboard Circuit Bus Divider -->
-  <div class="pcb-bus-divider" aria-hidden="true">
-    <div class="container">
-      <div class="pcb-bus-wrap">
-        <div class="pcb-bus-line"></div>
-        <div class="pcb-chip-node">
-          <i class="fa-solid fa-microchip"></i>
-          <span>CIVIL_GRID // 811_READY</span>
-        </div>
-        <div class="pcb-bus-line"></div>
       </div>
     </div>
   </div>
@@ -222,10 +138,6 @@
       <div class="services-grid">
         <!-- Service 1: Telecommunications & Fiber Optics -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-telecom.jpg" alt="Telecommunications and Fiber Optics Infrastructure" loading="lazy">
@@ -238,10 +150,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-01 // OPTIC_BUS</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Telecommunications &amp; Fiber</h3>
             <p>High-speed communications infrastructure including fiber optic conduit placement, micro-trenching, cable pulling, and vault installation.</p>
             <ul class="service-features">
@@ -255,10 +163,6 @@
 
         <!-- Service 2: Gas Distribution & Pipeline -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-gas.jpg" alt="Gas Distribution and Pipeline Services" loading="lazy">
@@ -271,10 +175,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-02 // GAS_FLOW</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Gas Distribution &amp; Pipelines</h3>
             <p>Certified excavation, fusion, and placement for natural gas distribution mains and service lines with strict adherence to safety protocols.</p>
             <ul class="service-features">
@@ -288,10 +188,6 @@
 
         <!-- Service 3: Power & Electrical Infrastructure -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-power.jpg" alt="Power and Electrical Infrastructure" loading="lazy">
@@ -304,10 +200,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-03 // PWR_GRID</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Power &amp; Electrical Underground</h3>
             <p>Heavy underground electrical duct banks, high-voltage conduit runs, and equipment vaults for municipal, commercial, and utility grids.</p>
             <ul class="service-features">
@@ -321,10 +213,6 @@
 
         <!-- Service 4: Water Mains & Distribution -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-water.jpg" alt="Water Mains and Distribution Infrastructure" loading="lazy">
@@ -337,10 +225,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-04 // HYDRO_NET</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Water Mains &amp; Distribution</h3>
             <p>Installation and replacement of potable municipal water mains, industrial fire suppression lines, valves, and hydrant assemblies.</p>
             <ul class="service-features">
@@ -354,10 +238,6 @@
 
         <!-- Service 5: Sewer & Storm Drainage -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-sewer.jpg" alt="Sewer and Stormwater Utility Systems" loading="lazy">
@@ -370,10 +250,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-05 // SEWER_MAIN</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Sanitary Sewer &amp; Stormwater</h3>
             <p>Comprehensive underground gravity sanitary lines, pressurized force mains, stormwater drainage networks, and precast manhole structures.</p>
             <ul class="service-features">
@@ -387,10 +263,6 @@
 
         <!-- Service 6: Directional Drilling & Trenching -->
         <div class="service-card">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="service-thumb-wrap">
             <div class="service-thumb-main">
               <img src="images/service-hdd.jpg" alt="Directional Drilling and Trenching" loading="lazy">
@@ -403,10 +275,6 @@
             </div>
           </div>
           <div class="service-body">
-            <div class="pcb-card-header">
-              <span class="pcb-module-tag"><i class="fa-solid fa-microchip"></i> MOD-06 // HDD_NAV</span>
-              <span class="pcb-status-dot"></span>
-            </div>
             <h3>Directional Drilling (HDD) &amp; Trenching</h3>
             <p>State-of-the-art horizontal directional drilling (HDD) for trenchless installations that minimize surface damage and downtime.</p>
             <ul class="service-features">
@@ -446,15 +314,10 @@
       <div class="editorial-hours-grid editorial-hours-single">
         <!-- Field Operations & Estimating Card -->
         <div class="editorial-card residential-tier">
-          <span class="pcb-corner pcb-corner-tl"></span>
-          <span class="pcb-corner pcb-corner-tr"></span>
-          <span class="pcb-corner pcb-corner-bl"></span>
-          <span class="pcb-corner pcb-corner-br"></span>
           <div class="editorial-watermark">CREW</div>
           <div class="editorial-card-inner">
             <div class="editorial-tier-meta">
               <span class="editorial-tag">Field Operations &amp; Estimating</span>
-              <span class="pcb-module-tag"><i class="fa-solid fa-network-wired"></i> OPS-CORE // 24/7_DISPATCH</span>
               <span class="editorial-metric">Mon &ndash; Fri</span>
             </div>
             <div class="editorial-time-display commercial">
@@ -502,7 +365,7 @@
         
         <div class="territory-top-bar">
           <div class="territory-title-wrap">
-            <span class="editorial-pill pill-cyan"><i class="fa-solid fa-microchip"></i> Regional Infrastructure Network // TELEMETRY</span>
+            <span class="editorial-pill pill-cyan"><i class="fa-solid fa-map-location-dot"></i> Regional Service Footprint</span>
             <div class="heading-reveal-mask">
               <h3>Serving Illinois &amp; Surrounding Midwest States</h3>
             </div>
@@ -529,27 +392,6 @@
               </defs>
 
               <rect width="100%" height="100%" fill="url(#mapGrid)" />
-
-              <!-- Motherboard PCB Circuit Bus Overlays -->
-              <g stroke="rgba(0, 164, 228, 0.2)" stroke-width="1.5" fill="none">
-                <!-- Top-Left Bus Route -->
-                <path d="M 40 40 L 140 40 L 180 80 L 180 160 L 220 200" />
-                <circle cx="140" cy="40" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-                <circle cx="220" cy="200" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-                
-                <!-- Bottom-Right Bus Route -->
-                <path d="M 760 520 L 680 520 L 640 480 L 640 400 L 600 360" />
-                <circle cx="680" cy="520" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-                <circle cx="600" cy="360" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-
-                <!-- Top-Right Bus Route -->
-                <path d="M 760 60 L 680 60 L 620 120 L 540 120" />
-                <circle cx="680" cy="60" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-                
-                <!-- Bottom-Left Bus Route -->
-                <path d="M 40 500 L 120 500 L 180 440 L 260 440" />
-                <circle cx="120" cy="500" r="3.5" fill="#07223b" stroke="#00a4e4" stroke-width="1.2"/>
-              </g>
 
               <!-- State Boundaries Outline -->
               <g stroke="rgba(0, 136, 204, 0.16)" stroke-width="1.5" stroke-dasharray="4,4" fill="none">
@@ -583,10 +425,6 @@
                 <!-- I-39 Corridor -->
                 <path d="M 330 0 L 330 460" stroke="#0088cc" stroke-width="1.8" stroke-opacity="0.25"/>
               </g>
-
-              <!-- Animated Data Pulses along Highway Grid -->
-              <path class="pcb-pulse" d="M 0 260 L 800 260" />
-              <path class="pcb-pulse pulse-delay-1" d="M 330 0 L 330 460" />
 
               <!-- Highway Labels -->
               <g font-family="'Plus Jakarta Sans', sans-serif" font-size="9" font-weight="700" fill="rgba(0, 136, 204, 0.4)" letter-spacing="0.5">
