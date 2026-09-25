@@ -3684,6 +3684,251 @@ textarea.form-control {
   }
 }
 
+/* ==========================================================================
+   TECH-Y MOTHERBOARD & CIRCUIT ACCENTS
+   ========================================================================== */
+
+/* 1. PCB Corner Framing Brackets */
+.pcb-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(0, 164, 228, 0.45);
+  pointer-events: none;
+  z-index: 5;
+  transition: border-color 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.pcb-corner-tl { top: 8px; left: 8px; border-top: 2px solid; border-left: 2px solid; }
+.pcb-corner-tr { top: 8px; right: 8px; border-top: 2px solid; border-right: 2px solid; }
+.pcb-corner-bl { bottom: 8px; left: 8px; border-bottom: 2px solid; border-left: 2px solid; }
+.pcb-corner-br { bottom: 8px; right: 8px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.service-card:hover .pcb-corner,
+.editorial-card:hover .pcb-corner,
+.stats-strip:hover .pcb-corner {
+  border-color: #72d4ff;
+  width: 16px;
+  height: 16px;
+  filter: drop-shadow(0 0 4px #00a4e4);
+}
+
+/* 2. PCB Module Telemetry Tags */
+.pcb-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.pcb-module-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'SFMono-Regular', Consolas, 'Courier New', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #72d4ff;
+  background: rgba(7, 34, 59, 0.92);
+  border: 1px solid rgba(0, 164, 228, 0.38);
+  padding: 0.22rem 0.65rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+}
+
+.service-card:hover .pcb-module-tag {
+  border-color: #72d4ff;
+  background: rgba(0, 75, 122, 0.95);
+  color: #ffffff;
+  box-shadow: 0 0 12px rgba(0, 164, 228, 0.45);
+}
+
+.pcb-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00a4e4;
+  box-shadow: 0 0 8px #00a4e4;
+  display: inline-block;
+  animation: pcbDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes pcbDotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* 3. Hero Circuit Overlay */
+.hero-pcb-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.hero-pcb-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-tech-telemetry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.4rem 1.15rem;
+  background: rgba(7, 34, 59, 0.78);
+  border: 1px solid rgba(0, 164, 228, 0.4);
+  border-radius: var(--radius-full);
+  margin-bottom: 1.5rem;
+  font-family: 'SFMono-Regular', Consolas, 'Courier New', monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #cbd5e1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.hero-tech-telemetry i {
+  color: #72d4ff;
+}
+
+.hero-tech-telemetry .telemetry-sep {
+  color: rgba(0, 164, 228, 0.5);
+}
+
+@media (max-width: 680px) {
+  .hero-tech-telemetry {
+    font-size: 0.65rem;
+    padding: 0.35rem 0.85rem;
+    gap: 0.45rem;
+  }
+}
+
+/* 4. PCB Traces & Vias Animation */
+.pcb-trace {
+  stroke: rgba(0, 164, 228, 0.22);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pcb-trace-subtle {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+  fill: none;
+}
+
+.pcb-via {
+  fill: #061c31;
+  stroke: #00a4e4;
+  stroke-width: 1.5;
+}
+
+.pcb-via-dot {
+  fill: #72d4ff;
+}
+
+.pcb-chip-rect {
+  fill: rgba(7, 34, 59, 0.85);
+  stroke: rgba(0, 164, 228, 0.45);
+  stroke-width: 1.5;
+}
+
+.pcb-chip-text {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  fill: #72d4ff;
+  letter-spacing: 1px;
+}
+
+.pcb-pulse {
+  stroke: #72d4ff;
+  stroke-width: 2.2;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 35 260;
+  animation: pcbPulseStream 6s linear infinite;
+  filter: drop-shadow(0 0 5px #00a4e4);
+}
+
+.pulse-delay-1 {
+  animation-delay: -2s;
+}
+
+.pulse-delay-2 {
+  animation-delay: -4s;
+}
+
+@keyframes pcbPulseStream {
+  from { stroke-dashoffset: 295; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* 5. Motherboard Circuit Bus Divider */
+.pcb-bus-divider {
+  width: 100%;
+  padding: 1.75rem 0;
+  background: linear-gradient(180deg, #edf4f9 0%, #e2ecf5 50%, #edf4f9 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.pcb-bus-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.pcb-bus-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 164, 228, 0.4), rgba(0, 164, 228, 0.15), transparent);
+  position: relative;
+}
+
+.pcb-bus-line::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 30%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+  box-shadow: 0 0 8px var(--accent-blue);
+}
+
+.pcb-chip-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  background: #07223b;
+  color: #72d4ff;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(0, 164, 228, 0.4);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(7, 34, 59, 0.25);
+  white-space: nowrap;
+}
+
+.pcb-chip-node i {
+  color: #00a4e4;
+  font-size: 0.85rem;
+}
+
 
 
 
