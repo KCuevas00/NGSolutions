@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=6.2">
+  <link rel="stylesheet" href="css/style.css?v=6.3">
 </head>
 <body>
 
@@ -89,38 +89,44 @@
   <!-- Detailed Company Profile & Vision Section -->
   <section class="about-profile-section" style="padding-top: 4.5rem;">
     <div class="container">
-      <!-- Company Brand Intro with Official Logo -->
-      <div class="about-brand-spotlight">
-        <div class="about-brand-logo-card">
-          <div class="about-brand-identity-row">
-            <div class="about-logo-frame">
-              <img src="images/logo.jpg" alt="N&amp;G Solutions Services LLC Logo" class="about-brand-logo-img">
-            </div>
-            <div class="about-brand-name-wrap">
-              <span class="about-brand-name-main">N&amp;G SOLUTIONS</span>
-              <span class="about-brand-name-sub">SERVICES LLC</span>
-            </div>
-          </div>
-          <div class="about-brand-badge-pill">
-            <i class="fa-solid fa-shield-halved"></i> Safety Certified • 811 Compliant
-          </div>
+      <!-- Section Header -->
+      <div class="about-section-header text-center">
+        <span class="badge badge-cyan"><i class="fa-solid fa-building-shield"></i> Company Profile &amp; Core Vision</span>
+        <h2>Engineering the Underground Arteries of Midwest Connectivity</h2>
+        <p class="about-lead">
+          Founded on engineering precision, field-tested dependability, and uncompromising damage prevention, N&amp;G Solutions Services LLC is an underground utility and directional drilling (HDD) contractor dedicated to laying the buried pathways of communications, energy, and municipal civil infrastructure across Illinois and the Midwest.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="about-stats-strip">
+        <div class="about-stat-item">
+          <div class="about-stat-num">100%</div>
+          <div class="about-stat-lbl">811 Locate Compliance</div>
         </div>
-        <div class="about-brand-intro-text">
-          <span class="badge badge-cyan"><i class="fa-solid fa-building-shield"></i> Company Profile &amp; Core Vision</span>
-          <div class="heading-reveal-mask">
-            <h2>Engineering the Underground Arteries of Midwest Connectivity</h2>
-          </div>
-          <p class="about-lead">
-            Founded on engineering precision, field-tested dependability, and uncompromising damage prevention, N&amp;G Solutions Services LLC is an underground utility and directional drilling (HDD) contractor dedicated to laying the buried pathways of communications, energy, and municipal civil infrastructure across Illinois and the Midwest.
-          </p>
+        <div class="about-stat-item">
+          <div class="about-stat-num">50+ Yr</div>
+          <div class="about-stat-lbl">Engineered Asset Life</div>
+        </div>
+        <div class="about-stat-item">
+          <div class="about-stat-num">5 States</div>
+          <div class="about-stat-lbl">Midwest Rapid Dispatch</div>
+        </div>
+        <div class="about-stat-item">
+          <div class="about-stat-num">24/7</div>
+          <div class="about-stat-lbl">Emergency Response</div>
         </div>
       </div>
 
       <div class="about-bento-grid">
         <!-- Card 1: Core Identity (Telecommunications-First) -->
         <div class="about-card about-card-featured">
+          <div class="card-logo-watermark" aria-hidden="true">
+            <img src="images/logo.jpg" alt="" class="watermark-img">
+          </div>
           <div class="about-card-image">
             <img src="photos/townhouse-6unit-conduit-bundle.jpg" alt="Turnkey Fiber Optic Conduit Placement" loading="lazy">
+            <span class="card-img-pill"><i class="fa-solid fa-camera"></i> 6-Way Conduit Bundle</span>
           </div>
           <span class="about-card-badge"><i class="fa-solid fa-network-wired"></i> Core Identity</span>
           <h3>Underground Telecommunications-First by Design</h3>
@@ -143,8 +149,12 @@
 
         <!-- Card 2: Forward Vision -->
         <div class="about-card">
+          <div class="card-logo-watermark" aria-hidden="true">
+            <img src="images/logo.jpg" alt="" class="watermark-img">
+          </div>
           <div class="about-card-image">
             <img src="photos/townhouse-directional-drill-pullback.jpg" alt="Horizontal Directional Drilling Rig Pullback" loading="lazy">
+            <span class="card-img-pill"><i class="fa-solid fa-camera"></i> Directional Rig Pullback</span>
           </div>
           <span class="about-card-badge"><i class="fa-solid fa-bullseye"></i> Forward Vision</span>
           <h3>Connecting Communities with Resilient Networks</h3>
@@ -167,8 +177,12 @@
 
         <!-- Card 3: Quality & Safety Standards -->
         <div class="about-card">
+          <div class="card-logo-watermark" aria-hidden="true">
+            <img src="images/logo.jpg" alt="" class="watermark-img">
+          </div>
           <div class="about-card-image">
             <img src="photos/apartment-pole-utility-locator-trench.jpg" alt="811 Locate Marking &amp; Vacuum Potholing Verification" loading="lazy">
+            <span class="card-img-pill"><i class="fa-solid fa-camera"></i> 811 Potholing Verification</span>
           </div>
           <span class="about-card-badge"><i class="fa-solid fa-shield-halved"></i> Quality &amp; Safety Standards</span>
           <h3>100% 811 Compliance &amp; Rigorous Safety Benchmarks</h3>
@@ -191,6 +205,9 @@
 
         <!-- Card 4: How We Work (Turnkey 4-Stage Operational Model) -->
         <div class="about-card about-card-wide">
+          <div class="card-logo-watermark card-watermark-wide" aria-hidden="true">
+            <img src="images/logo.jpg" alt="" class="watermark-img">
+          </div>
           <span class="about-card-badge"><i class="fa-solid fa-diagram-project"></i> Operational Framework</span>
           <h3>How We Work: Turnkey 4-Stage Project Execution</h3>
           <p style="color: #e2e8f0 !important; font-size: 1.02rem; line-height: 1.65; margin-bottom: 2rem;">
@@ -198,22 +215,34 @@
           </p>
           <div class="about-steps-grid">
             <div class="about-step-item">
-              <span class="step-num">01</span>
+              <div class="step-top-row">
+                <span class="step-num">01</span>
+                <span class="step-icon"><i class="fa-solid fa-map-location-dot"></i></span>
+              </div>
               <h4>Plan &amp; Locate</h4>
               <p>Thorough plan sheet analysis, 811 utility mark verification, vacuum potholing to visually verify existing lines, and precise bore profile mapping.</p>
             </div>
             <div class="about-step-item">
-              <span class="step-num">02</span>
+              <div class="step-top-row">
+                <span class="step-num">02</span>
+                <span class="step-icon"><i class="fa-solid fa-bore-hole"></i></span>
+              </div>
               <h4>Guided Boring (HDD)</h4>
               <p>Trenchless directional boring using digitized steerable drill heads, navigating beneath obstacles and roadways with zero surface destruction.</p>
             </div>
             <div class="about-step-item">
-              <span class="step-num">03</span>
+              <div class="step-top-row">
+                <span class="step-num">03</span>
+                <span class="step-icon"><i class="fa-solid fa-network-wired"></i></span>
+              </div>
               <h4>Conduit &amp; Vault Placement</h4>
               <p>Pullback of certified HDPE bundles, multi-duct placement, cable pulling/jetting, and placement of grade-level polymer concrete vaults.</p>
             </div>
             <div class="about-step-item">
-              <span class="step-num">04</span>
+              <div class="step-top-row">
+                <span class="step-num">04</span>
+                <span class="step-icon"><i class="fa-solid fa-check-double"></i></span>
+              </div>
               <h4>Compaction &amp; Restoration</h4>
               <p>Rigorous mechanical compaction testing, clean asphalt/concrete patching, and complete turf re-grading leaving jobsites spotless.</p>
             </div>
