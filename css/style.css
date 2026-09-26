@@ -3977,47 +3977,29 @@ textarea.form-control {
   letter-spacing: 0.05em;
 }
 
-/* Watermark logo in background of text boxes */
-.card-logo-watermark {
-  position: absolute;
-  right: -30px;
-  bottom: -30px;
-  width: 210px;
-  height: 210px;
-  opacity: 0.045;
-  pointer-events: none;
-  border-radius: 50%;
+/* Official Company Brand Seal in Header */
+.about-brand-seal {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.35rem;
+  border-radius: 14px;
   overflow: hidden;
-  filter: grayscale(100%);
-  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.2, 0, 0.2, 1);
-  z-index: 1;
+  box-shadow: 0 6px 20px rgba(0, 75, 122, 0.16);
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card-logo-watermark img {
+.about-brand-seal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 114, 206, 0.25);
+}
+
+.about-brand-seal img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.about-card:hover .card-logo-watermark {
-  opacity: 0.09;
-  transform: scale(1.08) rotate(4deg);
-}
-
-.about-card-wide .card-watermark-wide {
-  width: 360px;
-  height: 360px;
-  right: -40px;
-  bottom: -40px;
-  opacity: 0.07;
-  filter: grayscale(100%) brightness(260%);
-  mix-blend-mode: screen;
-}
-
-.about-card-wide:hover .card-watermark-wide {
-  opacity: 0.12;
-  transform: scale(1.05);
 }
 
 /* Card Work Photo Badge */
@@ -4099,15 +4081,6 @@ textarea.form-control {
   background: linear-gradient(90deg, #0072ce 0%, #00a4e4 100%);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   z-index: 3;
-}
-
-.about-card > * {
-  position: relative;
-  z-index: 2;
-}
-
-.about-card > .card-logo-watermark {
-  z-index: 1;
 }
 
 .about-card:hover {
@@ -5129,17 +5102,10 @@ textarea.form-control {
   .about-stat-lbl {
     font-size: 0.7rem;
   }
-  .card-logo-watermark {
-    width: 150px;
-    height: 150px;
-    right: -20px;
-    bottom: -20px;
-  }
-  .about-card-wide .card-watermark-wide {
-    width: 240px;
-    height: 240px;
-    right: -30px;
-    bottom: -30px;
+  .about-brand-seal {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 1rem;
   }
   .about-card {
     padding: 1.5rem;
