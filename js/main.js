@@ -98,19 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('pageshow', updateNavbarScroll);
   }
 
-  // 3. Gallery Category Filter & Modern Grid Filter
-  const filterBtns = document.querySelectorAll('.filter-btn, .gallery-filter-btn');
-  const galleryCards = document.querySelectorAll('.gallery-card, .gallery-item, .gallery-tile');
+  // 3. Gallery Category Filter (Before & After Cards & Legacy Grid)
+  const filterBtns = document.querySelectorAll('.filter-btn, .gallery-filter-btn, .ba-filter-btn');
+  const galleryCards = document.querySelectorAll('.gallery-card, .gallery-item, .gallery-tile, .ba-card');
 
   if (filterBtns.length > 0 && galleryCards.length > 0) {
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        const isBa = btn.classList.contains('ba-filter-btn');
+        const siblingBtns = isBa 
+          ? document.querySelectorAll('.ba-filter-btn') 
+          : document.querySelectorAll('.filter-btn, .gallery-filter-btn');
+
+        siblingBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const filter = btn.getAttribute('data-filter');
+        const targetCards = isBa 
+          ? document.querySelectorAll('.ba-card') 
+          : document.querySelectorAll('.gallery-card, .gallery-item, .gallery-tile');
 
-        galleryCards.forEach(item => {
+        targetCards.forEach(item => {
           const category = item.getAttribute('data-category') || '';
           const itemType = item.getAttribute('data-type') || '';
           
@@ -132,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Lightbox Modal for Gallery (Photos & Videos)
+  // 4. Lightbox Modal for Gallery (Photos & Strictly Muted Videos)
   const lightbox = document.getElementById('lightboxModal');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxVideo = document.getElementById('lightboxVideo');
@@ -141,53 +149,65 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxClose = document.querySelector('.lightbox-close');
 
   if (lightbox) {
-    document.querySelectorAll('.gallery-tile, .photo-pane, .showcase-photo-pane, .gallery-item').forEach(pane => {
-      pane.addEventListener('click', () => {
+    // Open image/video helper
+    function openLightbox(src, isVideo, title, desc) {
+      if (isVideo) {
+        if (lightboxVideo) {
+          lightboxVideo.muted = true;
+          lightboxVideo.volume = 0;
+          lightboxVideo.playsInline = true;
+          lightboxVideo.src = src;
+          lightboxVideo.style.display = 'block';
+          if (lightboxImg) lightboxImg.style.display = 'none';
+          lightboxVideo.play().catch(() => {});
+        }
+      } else {
+        if (lightboxImg) {
+          lightboxImg.src = src;
+          lightboxImg.style.display = 'block';
+          if (lightboxVideo) {
+            lightboxVideo.pause();
+            lightboxVideo.src = '';
+            lightboxVideo.style.display = 'none';
+          }
+        }
+      }
+
+      if (title && lightboxTitle) lightboxTitle.textContent = title;
+      if (desc && lightboxDesc) lightboxDesc.textContent = desc;
+      else if (lightboxDesc) lightboxDesc.textContent = '';
+
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Attach listeners to gallery tiles, panes, and buttons
+    document.querySelectorAll('.gallery-tile, .photo-pane, .showcase-photo-pane, .gallery-item, .ba-pane').forEach(pane => {
+      pane.addEventListener('click', (e) => {
         const isVideo = pane.dataset.type === 'video' || pane.classList.contains('is-video');
         const title = pane.dataset.title || (pane.querySelector('h3') ? pane.querySelector('h3').textContent : 'Project Detail');
         const desc = pane.dataset.desc || (pane.querySelector('p') ? pane.querySelector('p').textContent : '');
 
         if (isVideo) {
           const videoSrc = pane.dataset.videoSrc || (pane.querySelector('video') ? pane.querySelector('video').src : '');
-          if (videoSrc && lightboxVideo) {
-            lightboxVideo.src = videoSrc;
-            lightboxVideo.style.display = 'block';
-            if (lightboxImg) lightboxImg.style.display = 'none';
-            lightboxVideo.play().catch(() => {});
-          }
+          if (videoSrc) openLightbox(videoSrc, true, title, desc);
         } else {
           const img = pane.querySelector('img');
-          if (img && lightboxImg) {
-            lightboxImg.src = img.src;
-            lightboxImg.style.display = 'block';
-            if (lightboxVideo) {
-              lightboxVideo.pause();
-              lightboxVideo.src = '';
-              lightboxVideo.style.display = 'none';
-            }
-          }
+          if (img) openLightbox(img.src, false, title, desc);
         }
-
-        if (title && lightboxTitle) lightboxTitle.textContent = title;
-        if (desc && lightboxDesc) lightboxDesc.textContent = desc;
-
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
       });
+    });
 
-      // Desktop Video Tile Preview on Hover
-      if (pane.classList.contains('is-video')) {
-        const tileVideo = pane.querySelector('video');
-        if (tileVideo) {
-          pane.addEventListener('mouseenter', () => {
-            tileVideo.play().catch(() => {});
-          });
-          pane.addEventListener('mouseleave', () => {
-            tileVideo.pause();
-            tileVideo.currentTime = 0;
-          });
+    // Explicit Before & After view buttons
+    document.querySelectorAll('.ba-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetSrc = btn.getAttribute('data-view-target');
+        const title = btn.getAttribute('data-title') || 'Project Detail';
+        if (targetSrc) {
+          openLightbox(targetSrc, false, title, '');
         }
-      }
+      });
     });
 
     if (lightboxClose) {
