@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=6.0">
+  <link rel="stylesheet" href="css/style.css?v=6.1">
 </head>
 <body>
 
@@ -89,19 +89,33 @@
   <!-- Detailed Company Profile & Vision Section -->
   <section class="about-profile-section" style="padding-top: 4.5rem;">
     <div class="container">
-      <div class="section-header" style="text-align: center; max-width: 860px; margin: 0 auto 3rem;">
-        <span class="badge badge-cyan"><i class="fa-solid fa-building-shield"></i> Company Profile &amp; Core Vision</span>
-        <div class="heading-reveal-mask">
-          <h2>Engineering the Underground Arteries of Midwest Connectivity</h2>
+      <!-- Company Brand Intro with Official Logo -->
+      <div class="about-brand-spotlight">
+        <div class="about-brand-logo-card">
+          <div class="about-logo-frame">
+            <img src="images/logo.jpg" alt="N&amp;G Solutions Services LLC Logo" class="about-brand-logo-img">
+          </div>
+          <div class="about-brand-badge-pill">
+            <i class="fa-solid fa-shield-halved"></i> Safety Certified • 811 Compliant
+          </div>
         </div>
-        <p class="about-lead">
-          Founded on engineering precision, field-tested dependability, and uncompromising damage prevention, N&amp;G Solutions Services LLC is a Midwest infrastructure leader dedicated to laying the buried pathways of tomorrow's communications, energy, and civil networks.
-        </p>
+        <div class="about-brand-intro-text">
+          <span class="badge badge-cyan"><i class="fa-solid fa-building-shield"></i> Company Profile &amp; Core Vision</span>
+          <div class="heading-reveal-mask">
+            <h2>Engineering the Underground Arteries of Midwest Connectivity</h2>
+          </div>
+          <p class="about-lead">
+            Founded on engineering precision, field-tested dependability, and uncompromising damage prevention, N&amp;G Solutions Services LLC is an underground utility and directional drilling (HDD) contractor dedicated to laying the buried pathways of communications, energy, and municipal civil infrastructure across Illinois and the Midwest.
+          </p>
+        </div>
       </div>
 
-      <div class="about-bento-grid" style="margin-top: 2.5rem;">
+      <div class="about-bento-grid">
         <!-- Card 1: Core Identity (Telecommunications-First) -->
         <div class="about-card about-card-featured">
+          <div class="about-card-image">
+            <img src="photos/townhouse-6unit-conduit-bundle.jpg" alt="Turnkey Fiber Optic Conduit Placement" loading="lazy">
+          </div>
           <span class="about-card-badge"><i class="fa-solid fa-network-wired"></i> Core Identity</span>
           <h3>Underground Telecommunications-First by Design</h3>
           <p>
@@ -123,6 +137,9 @@
 
         <!-- Card 2: Forward Vision -->
         <div class="about-card">
+          <div class="about-card-image">
+            <img src="photos/townhouse-directional-drill-pullback.jpg" alt="Horizontal Directional Drilling Rig Pullback" loading="lazy">
+          </div>
           <span class="about-card-badge"><i class="fa-solid fa-bullseye"></i> Forward Vision</span>
           <h3>Connecting Communities with Resilient Networks</h3>
           <p>
@@ -144,6 +161,9 @@
 
         <!-- Card 3: Quality & Safety Standards -->
         <div class="about-card">
+          <div class="about-card-image">
+            <img src="photos/apartment-pole-utility-locator-trench.jpg" alt="811 Locate Marking &amp; Vacuum Potholing Verification" loading="lazy">
+          </div>
           <span class="about-card-badge"><i class="fa-solid fa-shield-halved"></i> Quality &amp; Safety Standards</span>
           <h3>100% 811 Compliance &amp; Rigorous Safety Benchmarks</h3>
           <p>
@@ -167,7 +187,7 @@
         <div class="about-card about-card-wide">
           <span class="about-card-badge"><i class="fa-solid fa-diagram-project"></i> Operational Framework</span>
           <h3>How We Work: Turnkey 4-Stage Project Execution</h3>
-          <p>
+          <p style="color: #e2e8f0 !important; font-size: 1.02rem; line-height: 1.65; margin-bottom: 2rem;">
             We manage every phase of underground utility deployment with single-source accountability, ensuring rapid turnaround, transparent communication, and immaculate site restoration for civil engineers, municipalities, and telecom providers.
           </p>
           <div class="about-steps-grid">

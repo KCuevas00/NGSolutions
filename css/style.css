@@ -3904,11 +3904,113 @@ textarea.form-control {
   margin: 0.75rem auto 0;
 }
 
+/* Company Brand Spotlight with Logo */
+.about-brand-spotlight {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 6px 25px rgba(0, 75, 122, 0.05);
+}
+
+.about-brand-logo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.75rem 1.25rem;
+  background: linear-gradient(135deg, #071526 0%, #0d2744 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(0, 164, 228, 0.3);
+  box-shadow: 0 8px 24px rgba(7, 21, 38, 0.25);
+}
+
+.about-logo-frame {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 1.15rem;
+  background: #ffffff;
+}
+
+.about-brand-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-brand-badge-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #72d4ff;
+  background: rgba(0, 164, 228, 0.15);
+  border: 1px solid rgba(0, 164, 228, 0.3);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.about-brand-intro-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-brand-intro-text h2 {
+  font-size: 2.15rem;
+  font-weight: 800;
+  color: var(--primary-deep);
+  line-height: 1.25;
+  margin: 0.5rem 0 1rem;
+}
+
+.about-brand-intro-text .about-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-main);
+  margin: 0;
+}
+
+/* Card Work Photos */
+.about-card-image {
+  width: 100%;
+  height: 200px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.about-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.about-card:hover .about-card-image img {
+  transform: scale(1.05);
+}
+
 .about-bento-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin-top: 3.5rem;
+  margin-top: 1.5rem;
 }
 
 .about-card {
@@ -3943,11 +4045,16 @@ textarea.form-control {
 }
 
 .about-card-wide h3 {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
-.about-card-wide p {
-  color: #cbd5e1;
+.about-card-wide p,
+.about-card.about-card-wide p {
+  color: #e2e8f0 !important;
+}
+
+.about-card-wide .about-step-item p {
+  color: #cbd5e1 !important;
 }
 
 .about-card-badge {
@@ -4849,6 +4956,18 @@ textarea.form-control {
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .about-brand-spotlight {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem 1.25rem;
+    gap: 1.5rem;
+  }
+  .about-brand-intro-text {
+    align-items: center;
+  }
+  .about-brand-intro-text h2 {
+    font-size: 1.75rem;
+  }
   .about-bento-grid {
     grid-template-columns: 1fr;
   }
@@ -4877,6 +4996,13 @@ textarea.form-control {
 }
 
 @media (max-width: 640px) {
+  .about-logo-frame {
+    width: 110px;
+    height: 110px;
+  }
+  .about-card {
+    padding: 1.5rem;
+  }
   .about-steps-grid {
     grid-template-columns: 1fr;
   }
