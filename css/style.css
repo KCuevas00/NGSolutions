@@ -4343,76 +4343,95 @@ textarea.form-control {
 .about-teaser-section {
   position: relative;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-  padding: 4.5rem 0 4rem;
+  padding: 3.5rem 0 3.25rem;
   border-bottom: 1px solid var(--border-color);
 }
 
 .about-teaser-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-  margin: 2.75rem 0;
+  gap: 1.5rem;
+  margin: 2rem 0;
 }
 
 .about-teaser-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-lg);
-  padding: 1.85rem;
+  padding: 1.6rem 1.4rem;
   box-shadow: 0 4px 16px rgba(0, 75, 122, 0.04);
-  transition: all 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+  transition: all 0.25s cubic-bezier(0.2, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
 }
 
 .about-teaser-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(0, 136, 204, 0.4);
-  box-shadow: 0 10px 25px rgba(0, 75, 122, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 75, 122, 0.08);
 }
 
 .about-teaser-icon {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, rgba(0, 136, 204, 0.12) 0%, rgba(0, 75, 122, 0.15) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary-blue);
-  font-size: 1.25rem;
-  margin-bottom: 1.25rem;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .about-teaser-card h3 {
-  font-size: 1.22rem;
+  font-size: 1.18rem;
   font-weight: 800;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.5rem;
   color: var(--primary-deep);
 }
 
 .about-teaser-card p {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   line-height: 1.55;
   color: var(--text-main);
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+}
+
+.about-teaser-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0072ce;
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.about-teaser-link:hover {
+  color: #004b7a;
+  gap: 0.65rem;
+}
+
+.about-teaser-link i {
+  font-size: 0.72rem;
 }
 
 .about-teaser-cta-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 .about-teaser-cta-wrap .btn {
-  white-space: normal;
-  text-align: center;
-  max-width: 100%;
-  line-height: 1.35;
+  padding: 0.8rem 2rem;
+  font-size: 0.96rem;
+  font-weight: 700;
 }
 
 @media (max-width: 992px) {
