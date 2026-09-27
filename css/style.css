@@ -4872,8 +4872,8 @@ textarea.form-control {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.5rem 0.85rem;
+  gap: 0.85rem;
+  padding: 0.45rem 0.85rem;
   margin-top: 0.85rem;
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -4881,6 +4881,8 @@ textarea.form-control {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0, 0.2, 1);
   box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  max-width: 440px;
+  width: 100%;
 }
 
 .ba-video-bar:hover {
@@ -4892,8 +4894,8 @@ textarea.form-control {
 
 .ba-video-bar-thumb {
   position: relative;
-  width: 72px;
-  height: 46px;
+  width: 68px;
+  height: 44px;
   border-radius: 4px;
   overflow: hidden;
   flex-shrink: 0;
@@ -4912,8 +4914,8 @@ textarea.form-control {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: rgba(0, 114, 206, 0.92);
   color: #ffffff;
@@ -4934,7 +4936,7 @@ textarea.form-control {
 }
 
 .ba-video-bar-tag {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 800;
   color: #0072ce;
   text-transform: uppercase;
@@ -4945,10 +4947,10 @@ textarea.form-control {
 }
 
 .ba-video-bar-title {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: #0f172a;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 .ba-video-bar-action {
@@ -4956,8 +4958,8 @@ textarea.form-control {
 }
 
 .ba-video-bar-action .btn {
-  padding: 0.4rem 0.95rem;
-  font-size: 0.82rem;
+  padding: 0.38rem 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -4970,6 +4972,7 @@ textarea.form-control {
 
 @media (max-width: 640px) {
   .ba-video-bar {
+    max-width: 100%;
     flex-wrap: wrap;
     gap: 0.65rem;
   }
