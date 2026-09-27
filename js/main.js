@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = 'hidden';
     }
 
-    // Attach listeners to gallery tiles, panes, and buttons
-    document.querySelectorAll('.gallery-tile, .photo-pane, .showcase-photo-pane, .gallery-item, .ba-pane').forEach(pane => {
+    // Attach listeners to gallery tiles, panes, cards, and buttons
+    document.querySelectorAll('.gallery-tile, .photo-pane, .showcase-photo-pane, .gallery-item, .ba-pane, .project-photo-card').forEach(pane => {
       pane.addEventListener('click', (e) => {
         const isVideo = pane.dataset.type === 'video' || pane.classList.contains('is-video');
         const title = pane.dataset.title || (pane.querySelector('h3') ? pane.querySelector('h3').textContent : 'Project Detail');
