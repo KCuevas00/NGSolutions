@@ -5705,72 +5705,185 @@ textarea.form-control {
   z-index: 2;
 }
 
-.cta-hours-badge {
+/* Live Operating Hours Showcase Card */
+.cta-hours-card {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.55rem;
-  background: rgba(7, 21, 39, 0.75);
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 0.45rem 1.15rem;
-  border-radius: var(--radius-full);
-  font-size: 0.86rem;
-  color: #cbd5e1;
-  margin-bottom: 1.75rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: rgba(7, 24, 46, 0.85);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: 20px;
+  padding: 1.25rem 2.75rem;
+  margin-bottom: 2.25rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 164, 228, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.cta-hours-badge .live-dot {
-  width: 8px;
-  height: 8px;
+.cta-hours-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.7);
+}
+
+.cta-hours-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cta-hours-status-row .live-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: #22c55e;
-  box-shadow: 0 0 10px #22c55e;
+  box-shadow: 0 0 12px #22c55e;
   animation: livePulse 1.8s infinite;
   display: inline-block;
   flex-shrink: 0;
 }
 
-.cta-hours-badge strong {
-  color: #38bdf8;
+.cta-status-title {
+  font-size: 0.92rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #94a3b8;
+}
+
+.cta-pill-tag {
+  background: rgba(0, 164, 228, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #38bdf8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cta-hours-time-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.15rem;
+  flex-wrap: wrap;
+}
+
+.cta-days-label {
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-days-label i {
+  color: #94a3b8;
+  font-size: 1.15rem;
+}
+
+.cta-time-separator {
+  color: #475569;
+  font-size: 1.4rem;
+}
+
+.cta-time-value {
+  font-size: clamp(1.4rem, 3.2vw, 1.95rem);
+  font-weight: 800;
+  color: #38bdf8;
+  font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.cta-time-value i {
+  color: #38bdf8;
+  font-size: 1.35rem;
 }
 
 .cta-banner-title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(2.1rem, 4.2vw, 3rem);
   font-weight: 800;
   color: #ffffff;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
 }
 
 .cta-banner-lead {
-  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
   color: #cbd5e1;
   line-height: 1.65;
-  max-width: 680px;
-  margin: 0 auto 2.25rem;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
 }
 
 .cta-banner-actions {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.15rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
 .cta-banner-actions .btn {
-  padding: 0.95rem 2.25rem;
-  font-size: 1.05rem;
+  padding: 1rem 2.4rem;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 @media (max-width: 600px) {
   .cta-banner-section {
-    padding: 4rem 0;
+    padding: 4.5rem 0;
+  }
+
+  .cta-hours-card {
+    padding: 1.15rem 1.25rem;
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 1.75rem;
+  }
+
+  .cta-hours-status-row {
+    gap: 0.5rem;
+  }
+
+  .cta-status-title {
+    font-size: 0.82rem;
+  }
+
+  .cta-pill-tag {
+    font-size: 0.72rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .cta-hours-time-row {
+    gap: 0.5rem;
+  }
+
+  .cta-time-separator {
+    display: none;
+  }
+
+  .cta-days-label {
+    font-size: 1.15rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cta-time-value {
+    font-size: 1.45rem;
+    width: 100%;
+    justify-content: center;
   }
 
   .cta-banner-actions {
@@ -5783,10 +5896,6 @@ textarea.form-control {
     width: 100%;
     justify-content: center;
   }
-
-  .cta-hours-badge {
-    font-size: 0.78rem;
-    padding: 0.4rem 0.9rem;
-  }
 }
+
 
