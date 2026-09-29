@@ -654,80 +654,125 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 13. Hero Typing Animation (Typewriter Effect)
-  function initHeroTypewriter() {
-    const targetEl = document.getElementById('heroTypedWord');
-    const cursorEl = document.querySelector('.itg-type-cursor');
-    if (!targetEl) return;
-
+  // 13. Universal Typewriter Animation for Headers
+  function initTypewriters() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return; // Respect reduced motion preference
     }
 
-    const words = [
-      'Operators.',
-      'HDD Crews.',
-      'Drillers.',
-      'Field Pros.'
-    ];
+    const typeElements = document.querySelectorAll('.typed-accent[data-words], #heroTypedWord');
+    if (!typeElements.length) return;
 
-    const ROTATE_WORDS = true;
-    const typeSpeed = 85;
-    const deleteSpeed = 40;
-    const holdWordMs = 2800;
+    typeElements.forEach(targetEl => {
+      // Find or create cursor
+      let cursorEl = targetEl.nextElementSibling;
+      if (!cursorEl || (!cursorEl.classList.contains('typed-cursor') && !cursorEl.classList.contains('itg-type-cursor'))) {
+        cursorEl = document.createElement('span');
+        cursorEl.className = 'typed-cursor';
+        if (targetEl.classList.contains('typed-accent-blue')) {
+          cursorEl.classList.add('typed-cursor-blue');
+        }
+        cursorEl.setAttribute('aria-hidden', 'true');
+        targetEl.parentNode.insertBefore(cursorEl, targetEl.nextSibling);
+      }
 
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    // Clear initial text so it types out live
-    targetEl.textContent = '';
-    if (cursorEl) cursorEl.classList.add('typing');
-
-    function tick() {
-      const currentWord = words[wordIndex];
-
-      if (isDeleting) {
-        charIndex--;
-        targetEl.textContent = currentWord.substring(0, charIndex);
-        if (cursorEl) cursorEl.classList.add('typing');
+      let words = [];
+      const dataWords = targetEl.getAttribute('data-words');
+      if (dataWords) {
+        if (dataWords.includes('|')) {
+          words = dataWords.split('|').map(s => s.trim()).filter(Boolean);
+        } else {
+          try {
+            words = JSON.parse(dataWords);
+          } catch (e) {
+            words = [dataWords.trim()];
+          }
+        }
+      } else if (targetEl.id === 'heroTypedWord') {
+        words = ['Operators.', 'HDD Crews.', 'Drillers.', 'Field Pros.'];
       } else {
-        charIndex++;
-        targetEl.textContent = currentWord.substring(0, charIndex);
-        if (cursorEl) cursorEl.classList.add('typing');
+        words = [targetEl.textContent.trim()];
       }
 
-      let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
-      if (!isDeleting) {
-        nextDelay += Math.floor(Math.random() * 20 - 10);
-      }
+      if (!words || !words.length) return;
 
-      if (!isDeleting && charIndex === currentWord.length) {
-        if (cursorEl) cursorEl.classList.remove('typing');
+      const typeSpeed = parseInt(targetEl.getAttribute('data-type-speed'), 10) || 85;
+      const deleteSpeed = parseInt(targetEl.getAttribute('data-delete-speed'), 10) || 40;
+      const holdWordMs = parseInt(targetEl.getAttribute('data-hold-time'), 10) || 2800;
 
-        if (!ROTATE_WORDS) {
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let started = false;
+
+      function tick() {
+        const currentWord = words[wordIndex];
+
+        if (isDeleting) {
+          charIndex--;
+          targetEl.textContent = currentWord.substring(0, charIndex);
+          if (cursorEl) cursorEl.classList.add('typing');
+        } else {
+          charIndex++;
+          targetEl.textContent = currentWord.substring(0, charIndex);
+          if (cursorEl) cursorEl.classList.add('typing');
+        }
+
+        let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
+        if (!isDeleting) {
+          nextDelay += Math.floor(Math.random() * 20 - 10);
+        }
+
+        if (!isDeleting && charIndex === currentWord.length) {
+          if (cursorEl) cursorEl.classList.remove('typing');
+          isDeleting = true;
+          setTimeout(tick, holdWordMs);
+          return;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          if (cursorEl) cursorEl.classList.remove('typing');
+          setTimeout(tick, 350);
           return;
         }
 
-        isDeleting = true;
-        setTimeout(tick, holdWordMs);
-        return;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        if (cursorEl) cursorEl.classList.remove('typing');
-        setTimeout(tick, 350);
-        return;
+        setTimeout(tick, nextDelay);
       }
 
-      setTimeout(tick, nextDelay);
-    }
+      function startTyping() {
+        if (started) return;
+        started = true;
+        targetEl.textContent = '';
+        if (cursorEl) cursorEl.classList.add('typing');
+        setTimeout(tick, 300);
+      }
 
-    // Short delay before typing begins on page load
-    setTimeout(tick, 400);
+      // Check if element is already in viewport (e.g. Hero)
+      const rect = targetEl.getBoundingClientRect();
+      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+      if (inViewport || targetEl.id === 'heroTypedWord') {
+        setTimeout(startTyping, 400);
+      } else if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              startTyping();
+              observer.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -40px 0px'
+        });
+        observer.observe(targetEl);
+      } else {
+        setTimeout(startTyping, 600);
+      }
+    });
   }
 
-  initHeroTypewriter();
+  initTypewriters();
 
   // 14. Digit Counting Up Animations for Hero Numbers
   function initHeroCounters() {

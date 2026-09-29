@@ -917,8 +917,48 @@ section[id], div[id] {
   opacity: 1;
 }
 
+/* Universal Typewriter Animation & Cursors */
+.typed-accent {
+  display: inline;
+  color: #38bdf8;
+  background: linear-gradient(135deg, #72d4ff 0%, #38bdf8 60%, #00a4e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: inherit;
+}
+
+.typed-accent.typed-accent-blue {
+  color: var(--primary-blue, #0088cc);
+  background: linear-gradient(135deg, #0088cc 0%, #005b8a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typed-cursor {
+  display: inline-block;
+  width: 3.5px;
+  height: 0.86em;
+  background-color: #38bdf8;
+  margin-left: 4px;
+  vertical-align: -0.04em;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+  animation: itgBlinkCursor 0.85s infinite;
+}
+
+.typed-cursor.typed-cursor-blue {
+  background-color: #0088cc;
+  box-shadow: 0 0 8px rgba(0, 136, 204, 0.45);
+}
+
+.typed-cursor.typing {
+  animation: none;
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .itg-type-cursor {
+  .itg-type-cursor,
+  .typed-cursor {
     display: none;
   }
 }
