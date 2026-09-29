@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=9.0">
+  <link rel="stylesheet" href="css/style.css?v=9.1">
 </head>
 <body>
 
@@ -55,12 +55,46 @@
       </a>
 
       <nav class="main-nav">
+        <!-- Backdrop for Mobile Slide Drawer -->
+        <div class="nav-backdrop"></div>
+
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">Home</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
-          <li><a href="index.html#services" class="nav-link">Services</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <!-- Mobile Drawer Top Bar -->
+          <li class="mobile-drawer-header">
+            <div class="mobile-drawer-brand">
+              <img src="images/logo.jpg" alt="Logo" class="mobile-drawer-logo" width="36" height="36">
+              <div class="mobile-drawer-brand-text">
+                <span class="mobile-drawer-title">N&amp;G SOLUTIONS</span>
+                <span class="mobile-drawer-sub">SERVICES LLC</span>
+              </div>
+            </div>
+            <button type="button" class="mobile-drawer-close" aria-label="Close menu">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+
+          <!-- Nav Links Centered & Evenly Spaced -->
+          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="index.html#services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link active">Contact Us</a></li>
+
+          <!-- Mobile Drawer Footer Actions -->
+          <li class="mobile-drawer-footer">
+            <a href="tel:2246338813" class="btn btn-silver btn-sm mobile-drawer-btn">
+              <i class="fa-solid fa-phone"></i> (224) 633-8813
+            </a>
+            <a href="contact.html" class="btn btn-primary btn-sm mobile-drawer-btn">
+              Request a Project Bid
+            </a>
+            <div class="mobile-drawer-status">
+              <span class="pulse-dot"></span> Mid-West Trenchless &amp; Directional Boring
+            </div>
+          </li>
         </ul>
+
         <div class="nav-actions">
           <a href="tel:2246338813" class="btn btn-silver btn-sm"><i class="fa-solid fa-phone"></i> (224) 633-8813</a>
           <a href="contact.html" class="btn btn-primary btn-sm">Request a Bid</a>
@@ -92,186 +126,97 @@
       <div class="contact-grid">
         
         <!-- Form Card with Tab Switcher -->
+        <!-- Form Card: Request a Project Bid -->
         <div class="form-card">
-          <!-- Tab Navigation -->
-          <div class="contact-form-tabs" role="tablist">
-            <button type="button" class="form-tab-btn active" id="tabBtnBid" data-tab="bidTab" role="tab" aria-selected="true" aria-controls="bidTab">
-              <i class="fa-solid fa-file-invoice"></i> Request a Project Bid
-            </button>
-            <button type="button" class="form-tab-btn" id="tabBtnCareers" data-tab="careersTab" role="tab" aria-selected="false" aria-controls="careersTab">
-              <i class="fa-solid fa-hard-hat"></i> Careers &amp; Subcontractors
-            </button>
+          <!-- Quick Callout for Careers & Subcontractors -->
+          <div style="background: rgba(0, 136, 204, 0.06); border: 1.5px solid rgba(0, 136, 204, 0.2); border-radius: 12px; padding: 0.95rem 1.25rem; margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: space-between; gap: 0.85rem; flex-wrap: wrap;">
+            <div style="font-size: 0.92rem; color: var(--text-main);">
+              <i class="fa-solid fa-hard-hat" style="color: var(--primary-blue); margin-right: 0.45rem;"></i>
+              <strong>Looking to join our crews or partner as a 1099 sub?</strong>
+            </div>
+            <a href="careers.html" class="btn btn-silver btn-sm" style="font-size: 0.82rem; padding: 0.4rem 0.85rem;">
+              Visit Careers &amp; Subs Page &rarr;
+            </a>
           </div>
 
           <div id="formStatus" class="form-status"></div>
 
-          <!-- TAB 1: Request a Project Bid (Customer / GC Form) -->
-          <div id="bidTab" class="form-tab-content active" role="tabpanel" aria-labelledby="tabBtnBid">
-            <span class="badge badge-cyan" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-calculator"></i> Commercial Estimating</span>
-            <h2>Submit Project Details</h2>
-            <p class="form-subtitle">For contractors, municipalities, and commercial developers needing footage takeoffs or subcontracting proposals. Call <strong>(224) 633-8813</strong> or submit plan details below.</p>
+          <span class="badge badge-cyan" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-calculator"></i> Commercial Estimating</span>
+          <h2>Submit Project Details</h2>
+          <p class="form-subtitle">For contractors, municipalities, and commercial developers needing footage takeoffs or subcontracting proposals. Call <strong>(224) 633-8813</strong> or submit plan details below.</p>
 
-            <form id="contactQuoteForm" action="https://formsubmit.co/ngsolutionsservicesllc@gmail.com" method="POST">
-              <input type="hidden" name="_subject" value="New Utility Project Bid Request - N&G Solutions Services LLC">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
+          <form id="contactQuoteForm" action="https://formsubmit.co/ngsolutionsservicesllc@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New Utility Project Bid Request - N&G Solutions Services LLC">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
 
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="fullName" class="form-label">Full Name *</label>
-                  <input type="text" id="fullName" name="Name" class="form-control" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                  <label for="companyName" class="form-label">Company / Municipality (Optional)</label>
-                  <input type="text" id="companyName" name="Company" class="form-control" placeholder="Company or Agency Name">
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="phone" class="form-label">Phone Number *</label>
-                  <input type="tel" id="phone" name="Phone" class="form-control" placeholder="(224) 000-0000" required>
-                </div>
-                <div class="form-group">
-                  <label for="email" class="form-label">Email Address *</label>
-                  <input type="email" id="email" name="Email" class="form-control" placeholder="name@company.com" required>
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="cityLocation" class="form-label">Project Location (City, State) *</label>
-                  <input type="text" id="cityLocation" name="Project Location" class="form-control" placeholder="e.g. Chicago, IL or Indianapolis, IN" required>
-                </div>
-                <div class="form-group">
-                  <label for="serviceType" class="form-label">Primary Utility Service Needed</label>
-                  <select id="serviceType" name="Service Type" class="form-control">
-                    <option value="Telecommunications and Fiber Optics">Telecommunications and Fiber Optics</option>
-                    <option value="Horizontal Directional Drilling (HDD)">Horizontal Directional Drilling (HDD)</option>
-                    <option value="Water Mains and Distribution">Water Mains and Distribution</option>
-                    <option value="Natural Gas Distribution (Local Service Only)">Natural Gas Distribution (Local Service Only)</option>
-                    <option value="Power and Electrical Underground (Local Service Only)">Power and Electrical Underground (Local Service Only)</option>
-                    <option value="Turnkey Multi Utility Package">Turnkey Multi Utility Package</option>
-                    <option value="Utility Line Repair and Maintenance">Utility Line Repair and Maintenance</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="projectSector" class="form-label">Project Sector / Scope</label>
-                  <select id="projectSector" name="Sector" class="form-control">
-                    <option value="Commercial or Industrial Infrastructure">Commercial or Industrial Infrastructure</option>
-                    <option value="Municipal or Civil Works">Municipal or Civil Works</option>
-                    <option value="Subcontracting or General Contractor Partner">Subcontracting or GC Partner</option>
-                    <option value="Residential Development Utility Connection">Residential Development Utility Connection</option>
-                    <option value="Utility Relocation and Upgrades">Utility Relocation and Upgrades</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="targetDate" class="form-label">Target Start Date</label>
-                  <input type="text" id="targetDate" name="Target Date" class="form-control" placeholder="e.g. Immediate / Next Month / Q4">
-                </div>
-              </div>
-
+            <div class="form-group-row">
               <div class="form-group">
-                <label for="message" class="form-label">Project Scope and Specifications</label>
-                <textarea id="message" name="Project Details" class="form-control" rows="4" placeholder="Describe the utility requirements (footage, pipe or conduit size, depth, surface conditions, or directional boring needs)."></textarea>
+                <label for="fullName" class="form-label">Full Name *</label>
+                <input type="text" id="fullName" name="Name" class="form-control" placeholder="John Doe" required>
               </div>
-
-              <button type="submit" class="btn btn-primary" style="width: 100%;">
-                <i class="fa-solid fa-paper-plane"></i> Submit Request for Project Bid
-              </button>
-            </form>
-          </div>
-
-          <!-- TAB 2: Careers & Subcontractors (Field Intake Form) -->
-          <div id="careersTab" class="form-tab-content" role="tabpanel" aria-labelledby="tabBtnCareers">
-            <span class="badge badge-cyan" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-users"></i> Field Opportunities</span>
-            <h2>Work with N&amp;G Solutions</h2>
-            <p class="form-subtitle">Looking to run drill rigs with our Midwest crews or partner your subcontractor crew with N&amp;G? Send your details below or call field dispatch directly at <strong>(224) 633-8813</strong>.</p>
-
-            <form id="careersIntakeForm" action="https://formsubmit.co/ngsolutionsservicesllc@gmail.com" method="POST">
-              <input type="hidden" name="_subject" value="New Careers / Subcontractor Intake - N&G Solutions Services LLC">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="applicantName" class="form-label">Full Name *</label>
-                  <input type="text" id="applicantName" name="Applicant Name" class="form-control" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                  <label for="applicantPhone" class="form-label">Phone Number *</label>
-                  <input type="tel" id="applicantPhone" name="Phone Number" class="form-control" placeholder="(224) 000-0000" required>
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="applicantEmail" class="form-label">Email Address (Optional)</label>
-                  <input type="email" id="applicantEmail" name="Email" class="form-control" placeholder="yourname@gmail.com">
-                </div>
-                <div class="form-group">
-                  <label for="applicantLocation" class="form-label">Current City, State *</label>
-                  <input type="text" id="applicantLocation" name="Current Location" class="form-control" placeholder="e.g. Elgin, IL or Rockford, IL" required>
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="applicantRole" class="form-label">Position or Partnership Type *</label>
-                  <select id="applicantRole" name="Role or Partnership" class="form-control" required>
-                    <option value="Directional Drill Operator (Vermeer / HDD)">Directional Drill Operator (Vermeer / HDD)</option>
-                    <option value="Underground Utility Locator (DigiTrak / Subsite)">Underground Utility Locator (DigiTrak / Subsite)</option>
-                    <option value="Field Crew Laborer / Potholer">Field Crew Laborer / Potholer</option>
-                    <option value="CDL Driver / Heavy Equipment Operator">CDL Driver / Heavy Equipment Operator</option>
-                    <option value="1099 Subcontractor Crew (Have own rig & crew)">1099 Subcontractor Crew (Have own rig & crew)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="applicantLicense" class="form-label">Driver License / CDL Status</label>
-                  <select id="applicantLicense" name="Driver License Status" class="form-control">
-                    <option value="Class A CDL">Class A CDL</option>
-                    <option value="Class B CDL">Class B CDL</option>
-                    <option value="Valid Standard Driver License">Valid Standard Driver License</option>
-                    <option value="No Current License">No Current License</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group-row">
-                <div class="form-group">
-                  <label for="applicantExperience" class="form-label">Years of Experience in Utilities / HDD</label>
-                  <select id="applicantExperience" name="Years Experience" class="form-control">
-                    <option value="Entry Level / Willing to Learn">Entry Level / Willing to Learn</option>
-                    <option value="1 to 3 Years Field Experience">1 to 3 Years Field Experience</option>
-                    <option value="3 to 5 Years Experienced Operator">3 to 5 Years Experienced Operator</option>
-                    <option value="5+ Years Senior Driller / Lead">5+ Years Senior Driller / Lead</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="applicantAvailability" class="form-label">Availability to Start</label>
-                  <select id="applicantAvailability" name="Start Availability" class="form-control">
-                    <option value="Immediate (Ready to mobilize)">Immediate (Ready to mobilize)</option>
-                    <option value="Within 2 Weeks">Within 2 Weeks</option>
-                    <option value="Next Month">Next Month</option>
-                    <option value="Currently Inquiring">Currently Inquiring</option>
-                  </select>
-                </div>
-              </div>
-
               <div class="form-group">
-                <label for="applicantNotes" class="form-label">Experience &amp; Rig Background</label>
-                <textarea id="applicantNotes" name="Experience and Equipment" class="form-control" rows="3" placeholder="Tell us about the rigs you have operated (e.g. Vermeer 24x40, Ditch Witch), locators used, or if a subcontractor, your crew size and insurance status."></textarea>
+                <label for="companyName" class="form-label">Company / Municipality (Optional)</label>
+                <input type="text" id="companyName" name="Company" class="form-control" placeholder="Company or Agency Name">
               </div>
+            </div>
 
-              <button type="submit" class="btn btn-primary" style="width: 100%;">
-                <i class="fa-solid fa-paper-plane"></i> Submit Application / Crew Info
-              </button>
-            </form>
-          </div>
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone Number *</label>
+                <input type="tel" id="phone" name="Phone" class="form-control" placeholder="(224) 000-0000" required>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label">Email Address *</label>
+                <input type="email" id="email" name="Email" class="form-control" placeholder="name@company.com" required>
+              </div>
+            </div>
 
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="cityLocation" class="form-label">Project Location (City, State) *</label>
+                <input type="text" id="cityLocation" name="Project Location" class="form-control" placeholder="e.g. Chicago, IL or Indianapolis, IN" required>
+              </div>
+              <div class="form-group">
+                <label for="serviceType" class="form-label">Primary Utility Service Needed</label>
+                <select id="serviceType" name="Service Type" class="form-control">
+                  <option value="Telecommunications and Fiber Optics">Telecommunications and Fiber Optics</option>
+                  <option value="Horizontal Directional Drilling (HDD)">Horizontal Directional Drilling (HDD)</option>
+                  <option value="Water Mains and Distribution">Water Mains and Distribution</option>
+                  <option value="Natural Gas Distribution (Local Service Only)">Natural Gas Distribution (Local Service Only)</option>
+                  <option value="Power and Electrical Underground (Local Service Only)">Power and Electrical Underground (Local Service Only)</option>
+                  <option value="Turnkey Multi Utility Package">Turnkey Multi Utility Package</option>
+                  <option value="Utility Line Repair and Maintenance">Utility Line Repair and Maintenance</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="projectSector" class="form-label">Project Sector / Scope</label>
+                <select id="projectSector" name="Sector" class="form-control">
+                  <option value="Commercial or Industrial Infrastructure">Commercial or Industrial Infrastructure</option>
+                  <option value="Municipal or Civil Works">Municipal or Civil Works</option>
+                  <option value="Subcontracting or General Contractor Partner">Subcontracting or GC Partner</option>
+                  <option value="Residential Development Utility Connection">Residential Development Utility Connection</option>
+                  <option value="Utility Relocation and Upgrades">Utility Relocation and Upgrades</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="targetDate" class="form-label">Target Start Date</label>
+                <input type="text" id="targetDate" name="Target Date" class="form-control" placeholder="e.g. Immediate / Next Month / Q4">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Project Scope and Specifications</label>
+              <textarea id="message" name="Project Details" class="form-control" rows="4" placeholder="Describe the utility requirements (footage, pipe or conduit size, depth, surface conditions, or directional boring needs)."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Submit Request for Project Bid
+            </button>
+          </form>
         </div>
 
         <!-- Sidebar Contact Info -->
@@ -370,8 +315,8 @@
             <li><a href="index.html#services"><i class="fa-solid fa-angle-right"></i> Services</a></li>
             <li><a href="index.html#service-area"><i class="fa-solid fa-angle-right"></i> Service Area</a></li>
             <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Project Gallery</a></li>
-            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Request a Bid</a></li>
-            <li><a href="contact.html?tab=careers"><i class="fa-solid fa-angle-right"></i> Careers &amp; Subs</a></li>
+            <li><a href="careers.html"><i class="fa-solid fa-angle-right"></i> Careers &amp; Subs</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
           </ul>
         </div>
 
@@ -431,6 +376,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=9.0"></script>
+  <script src="js/main.js?v=9.1"></script>
 </body>
 </html>

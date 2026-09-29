@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=9.0">
+  <link rel="stylesheet" href="css/style.css?v=9.1">
 </head>
 <body>
 
@@ -55,12 +55,46 @@
       </a>
 
       <nav class="main-nav">
+        <!-- Backdrop for Mobile Slide Drawer -->
+        <div class="nav-backdrop"></div>
+
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active">Home</a></li>
-          <li><a href="about.html" class="nav-link">About Us</a></li>
-          <li><a href="#services" class="nav-link">Services</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <!-- Mobile Drawer Top Bar -->
+          <li class="mobile-drawer-header">
+            <div class="mobile-drawer-brand">
+              <img src="images/logo.jpg" alt="Logo" class="mobile-drawer-logo" width="36" height="36">
+              <div class="mobile-drawer-brand-text">
+                <span class="mobile-drawer-title">N&amp;G SOLUTIONS</span>
+                <span class="mobile-drawer-sub">SERVICES LLC</span>
+              </div>
+            </div>
+            <button type="button" class="mobile-drawer-close" aria-label="Close menu">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </li>
+
+          <!-- Nav Links Centered & Evenly Spaced -->
+          <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+          <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact Us</a></li>
+
+          <!-- Mobile Drawer Footer Actions -->
+          <li class="mobile-drawer-footer">
+            <a href="tel:2246338813" class="btn btn-silver btn-sm mobile-drawer-btn">
+              <i class="fa-solid fa-phone"></i> (224) 633-8813
+            </a>
+            <a href="contact.html" class="btn btn-primary btn-sm mobile-drawer-btn">
+              Request a Project Bid
+            </a>
+            <div class="mobile-drawer-status">
+              <span class="pulse-dot"></span> Mid-West Trenchless &amp; Directional Boring
+            </div>
+          </li>
         </ul>
+
         <div class="nav-actions">
           <a href="tel:2246338813" class="btn btn-silver btn-sm"><i class="fa-solid fa-phone"></i> (224) 633-8813</a>
           <a href="contact.html" class="btn btn-primary btn-sm">Request a Bid</a>
@@ -103,7 +137,7 @@
           <a href="contact.html" class="btn btn-primary itg-btn-main">
             <i class="fa-solid fa-file-invoice"></i> Request a Project Bid
           </a>
-          <a href="contact.html?tab=careers" class="btn btn-silver itg-btn-sub">
+          <a href="careers.html" class="btn btn-silver itg-btn-sub">
             <i class="fa-solid fa-users"></i> Careers &amp; Subcontractors
           </a>
         </div>
@@ -589,8 +623,8 @@
             <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Services</a></li>
             <li><a href="#service-area"><i class="fa-solid fa-angle-right"></i> Service Area</a></li>
             <li><a href="gallery.html"><i class="fa-solid fa-angle-right"></i> Project Gallery</a></li>
-            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Request a Bid</a></li>
-            <li><a href="contact.html?tab=careers"><i class="fa-solid fa-angle-right"></i> Careers &amp; Subs</a></li>
+            <li><a href="careers.html"><i class="fa-solid fa-angle-right"></i> Careers &amp; Subs</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
           </ul>
         </div>
 
@@ -650,6 +684,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=9.0"></script>
+  <script src="js/main.js?v=9.1"></script>
 </body>
 </html>

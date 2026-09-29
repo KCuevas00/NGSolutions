@@ -4,67 +4,85 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Mobile Menu Toggle
+  // 1. Mobile Menu Toggle & Slide-out Drawer
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navLinks = document.querySelector('.nav-links');
   const header = document.querySelector('.site-header');
 
+  // Ensure backdrop element exists in the DOM
+  let navBackdrop = document.querySelector('.nav-backdrop');
+  if (!navBackdrop) {
+    navBackdrop = document.createElement('div');
+    navBackdrop.className = 'nav-backdrop';
+    document.body.appendChild(navBackdrop);
+  }
+
+  function openMobileMenu() {
+    if (!navLinks) return;
+    navLinks.classList.add('active');
+    if (navBackdrop) navBackdrop.classList.add('active');
+    if (header) header.classList.add('menu-open');
+    document.body.classList.add('nav-drawer-open');
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      const icon = mobileToggle.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      }
+    }
+  }
+
+  function closeMobileMenu() {
+    if (!navLinks) return;
+    navLinks.classList.remove('active');
+    if (navBackdrop) navBackdrop.classList.remove('active');
+    if (header) header.classList.remove('menu-open');
+    document.body.classList.remove('nav-drawer-open');
+    if (mobileToggle) {
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      const icon = mobileToggle.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    }
+  }
+
   if (mobileToggle && navLinks) {
     mobileToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-      mobileToggle.setAttribute('aria-expanded', !isExpanded);
-      navLinks.classList.toggle('active');
-      
-      if (header) {
-        header.classList.toggle('menu-open', navLinks.classList.contains('active'));
-      }
-      
-      const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        if (navLinks.classList.contains('active')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-xmark');
-        } else {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-        }
+      if (navLinks.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
       }
     });
 
-    // Close menu when clicking outside or on a nav link
+    if (navBackdrop) {
+      navBackdrop.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close button inside drawer
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+      if (e.target.closest('.mobile-drawer-close')) {
         closeMobileMenu();
       }
     });
 
+    // Close menu when clicking on any nav link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         closeMobileMenu();
       });
     });
 
+    // Close menu on Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMobileMenu();
       }
     });
-
-    function closeMobileMenu() {
-      if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        if (header) {
-          header.classList.remove('menu-open');
-        }
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        const icon = mobileToggle.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-xmark');
-          icon.classList.add('fa-bars');
-        }
-      }
-    }
   }
 
   // 2. Transparent-to-Solid Navbar on Scroll
@@ -639,48 +657,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 12. Contact Form Tab Switcher (Project Bid vs. Careers & Subcontractors)
-  const tabBtns = document.querySelectorAll('.form-tab-btn');
-  const tabContents = document.querySelectorAll('.form-tab-content');
-
-  function activateContactTab(tabId) {
-    if (!tabBtns.length || !tabContents.length) return;
-
-    tabBtns.forEach(btn => {
-      const isTarget = btn.getAttribute('data-tab') === tabId;
-      btn.classList.toggle('active', isTarget);
-      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-    });
-
-    tabContents.forEach(content => {
-      const isTarget = content.id === tabId;
-      content.classList.toggle('active', isTarget);
-    });
-  }
-
-  if (tabBtns.length > 0) {
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetTab = btn.getAttribute('data-tab');
-        if (targetTab) activateContactTab(targetTab);
-      });
-    });
-
-    // Check URL parameters or hash to auto-activate careers tab
+  // 12. Careers Redirection & Backward Compatibility
+  if (window.location.pathname.includes('contact.html')) {
     const urlParams = new URLSearchParams(window.location.search);
     const tabParam = urlParams.get('tab');
     const typeParam = urlParams.get('type');
     const hash = window.location.hash;
 
     if (tabParam === 'careers' || typeParam === 'careers' || typeParam === 'employment' || typeParam === 'subcontractor' || typeParam === 'jobs' || hash === '#careers' || hash === '#careersTab') {
-      activateContactTab('careersTab');
-      const formCard = document.querySelector('.form-card');
-      if (formCard) {
-        setTimeout(() => {
-          formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 150);
-      }
+      window.location.replace('careers.html');
     }
   }
 
