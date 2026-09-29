@@ -660,7 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return; // Respect reduced motion preference
     }
 
-    const typeElements = document.querySelectorAll('.typed-accent[data-words], #heroTypedWord');
+    const typeElements = document.querySelectorAll('.typed-accent, #heroTypedWord');
     if (!typeElements.length) return;
 
     typeElements.forEach(targetEl => {
@@ -676,27 +676,40 @@ document.addEventListener('DOMContentLoaded', () => {
         targetEl.parentNode.insertBefore(cursorEl, targetEl.nextSibling);
       }
 
+      // Check if this element should loop & backspace (Hero only, unless explicitly data-loop="true")
+      const isLooping = targetEl.id === 'heroTypedWord' || targetEl.getAttribute('data-loop') === 'true';
+
       let words = [];
       const dataWords = targetEl.getAttribute('data-words');
-      if (dataWords) {
-        if (dataWords.includes('|')) {
-          words = dataWords.split('|').map(s => s.trim()).filter(Boolean);
-        } else {
-          try {
-            words = JSON.parse(dataWords);
-          } catch (e) {
-            words = [dataWords.trim()];
+      const dataText = targetEl.getAttribute('data-text');
+
+      if (isLooping) {
+        if (dataWords) {
+          if (dataWords.includes('|')) {
+            words = dataWords.split('|').map(s => s.trim()).filter(Boolean);
+          } else {
+            try {
+              words = JSON.parse(dataWords);
+            } catch (e) {
+              words = [dataWords.trim()];
+            }
           }
+        } else if (targetEl.id === 'heroTypedWord') {
+          words = ['Operators.', 'HDD Crews.', 'Drillers.', 'Field Pros.'];
+        } else {
+          words = [targetEl.textContent.trim()];
         }
-      } else if (targetEl.id === 'heroTypedWord') {
-        words = ['Operators.', 'HDD Crews.', 'Drillers.', 'Field Pros.'];
       } else {
-        words = [targetEl.textContent.trim()];
+        // Single-pass typing: type once and done
+        const singleText = dataText || (dataWords ? dataWords.split('|')[0].trim() : targetEl.textContent.trim());
+        words = [singleText];
       }
 
       if (!words || !words.length) return;
 
-      const typeSpeed = parseInt(targetEl.getAttribute('data-type-speed'), 10) || 85;
+      // Faster, punchy typing for single-pass headers (45ms), slightly deliberate for hero (80ms)
+      const defaultSpeed = isLooping ? 80 : 45;
+      const typeSpeed = parseInt(targetEl.getAttribute('data-type-speed'), 10) || defaultSpeed;
       const deleteSpeed = parseInt(targetEl.getAttribute('data-delete-speed'), 10) || 40;
       const holdWordMs = parseInt(targetEl.getAttribute('data-hold-time'), 10) || 2800;
 
@@ -720,11 +733,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
         if (!isDeleting) {
-          nextDelay += Math.floor(Math.random() * 20 - 10);
+          nextDelay += Math.floor(Math.random() * 16 - 8);
         }
 
+        // Reached end of current word
         if (!isDeleting && charIndex === currentWord.length) {
-          if (cursorEl) cursorEl.classList.remove('typing');
+          if (cursorEl) cursorEl.classList.remove('typing'); // Leave cursor blinking
+          
+          if (!isLooping) {
+            // Non-hero header: Finished typing! Leave text and keep cursor blinking indefinitely.
+            return;
+          }
+
           isDeleting = true;
           setTimeout(tick, holdWordMs);
           return;
@@ -744,7 +764,7 @@ document.addEventListener('DOMContentLoaded', () => {
         started = true;
         targetEl.textContent = '';
         if (cursorEl) cursorEl.classList.add('typing');
-        setTimeout(tick, 300);
+        setTimeout(tick, 250);
       }
 
       // Check if element is already in viewport (e.g. Hero)
