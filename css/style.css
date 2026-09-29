@@ -61,6 +61,10 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--primary-deep);
+  min-height: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -68,7 +72,9 @@ body {
   color: var(--text-main);
   background-color: var(--light-bg);
   line-height: 1.6;
-  overflow-x: hidden;
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3740,7 +3746,7 @@ textarea.form-control {
 .site-footer {
   background-color: var(--primary-deep);
   color: rgba(255, 255, 255, 0.75);
-  padding: 3.5rem 0 1.75rem;
+  padding: 3.5rem 0 calc(1.75rem + env(safe-area-inset-bottom, 0px));
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
