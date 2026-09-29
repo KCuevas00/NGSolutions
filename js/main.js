@@ -327,11 +327,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Continuous Looping Video Hero Playlist with Smooth Cross-Fade
+  // 7. Continuous Looping Video Hero Playlist with Safe Cross-Fade
   const videoA = document.getElementById('heroVideoA');
   const videoB = document.getElementById('heroVideoB');
 
-  if (videoA && videoB) {
+  if (videoA) {
     const playlist = [
       'videos/townhouse-6unit-conduit-install.mp4',
       'videos/commercial-store-conduit-install.mp4',
@@ -344,108 +344,93 @@ document.addEventListener('DOMContentLoaded', () => {
     let idlePlayer = videoB;
     let isTransitioning = false;
     let cycleTimer = null;
-    let videoErrorCount = 0;
-    const clipDuration = 5500; // 5.5 seconds per clip before cross-fading
+    const clipDuration = 7000; // 7 seconds per clip
 
+    // Guarantee default video plays and loops safely
     videoA.muted = true;
     videoA.playsInline = true;
-    videoB.muted = true;
-    videoB.playsInline = true;
+    videoA.setAttribute('playsinline', '');
+    videoA.setAttribute('webkit-playsinline', '');
+    videoA.setAttribute('muted', '');
+    videoA.loop = true;
 
-    function playVideo(video) {
-      if (!video) return;
-      video.muted = true;
-      video.playsInline = true;
-      const p = video.play();
+    function playActive() {
+      if (!activePlayer) return;
+      activePlayer.muted = true;
+      activePlayer.playsInline = true;
+      const p = activePlayer.play();
       if (p !== undefined) {
         p.catch(() => {
-          // Autoplay unlock on first user click or touch
-          const unlockAutoplay = () => {
-            activePlayer.play().catch(() => {});
+          const unlock = () => {
+            if (activePlayer) activePlayer.play().catch(() => {});
           };
-          document.addEventListener('touchstart', unlockAutoplay, { once: true, passive: true });
-          document.addEventListener('click', unlockAutoplay, { once: true, passive: true });
+          window.addEventListener('touchstart', unlock, { once: true, passive: true });
+          window.addEventListener('click', unlock, { once: true, passive: true });
         });
       }
     }
 
-    videoA.addEventListener('error', () => {
-      videoErrorCount++;
-      if (videoErrorCount > 2 && cycleTimer) {
-        clearInterval(cycleTimer);
-      }
-    });
+    playActive();
 
-    videoB.addEventListener('error', () => {
-      videoErrorCount++;
-      if (videoErrorCount > 2 && cycleTimer) {
-        clearInterval(cycleTimer);
-      }
-    });
-
-    // Start playing video A if supported
-    playVideo(videoA);
-
-    function nextVideo() {
-      if (isTransitioning || videoErrorCount > 2) return;
-      isTransitioning = true;
-
-      currentIndex = (currentIndex + 1) % playlist.length;
-      const nextSrc = playlist[currentIndex];
-
-      idlePlayer.src = nextSrc;
-      idlePlayer.currentTime = 0;
+    // Only run multi-clip playlist if secondary player exists
+    if (idlePlayer) {
       idlePlayer.muted = true;
       idlePlayer.playsInline = true;
-      idlePlayer.load();
+      idlePlayer.setAttribute('playsinline', '');
+      idlePlayer.setAttribute('webkit-playsinline', '');
+      idlePlayer.setAttribute('muted', '');
+      idlePlayer.loop = true;
 
-      let transitionDone = false;
-      let safetyTimer = null;
+      function nextVideo() {
+        if (isTransitioning) return;
+        isTransitioning = true;
 
-      const performCrossfade = () => {
-        if (transitionDone) return;
-        transitionDone = true;
-        if (safetyTimer) clearTimeout(safetyTimer);
+        currentIndex = (currentIndex + 1) % playlist.length;
+        const nextSrc = playlist[currentIndex];
 
-        idlePlayer.removeEventListener('playing', performCrossfade);
+        idlePlayer.src = nextSrc;
+        idlePlayer.currentTime = 0;
+        idlePlayer.muted = true;
+        idlePlayer.playsInline = true;
+        idlePlayer.load();
 
-        // Idle player is actively rendering frames - trigger smooth 1.2s cross-dissolve
-        idlePlayer.classList.add('active');
-        activePlayer.classList.remove('active');
+        let transitionDone = false;
 
-        setTimeout(() => {
-          activePlayer.pause();
-          const temp = activePlayer;
-          activePlayer = idlePlayer;
-          idlePlayer = temp;
-          isTransitioning = false;
-        }, 1250);
-      };
+        const performCrossfade = () => {
+          if (transitionDone) return;
+          // Verify idlePlayer is actually playing before hiding activePlayer
+          if (idlePlayer.paused || idlePlayer.readyState < 2) {
+            isTransitioning = false;
+            return;
+          }
+          transitionDone = true;
+          idlePlayer.removeEventListener('playing', performCrossfade);
 
-      idlePlayer.addEventListener('playing', performCrossfade, { once: true });
+          idlePlayer.classList.add('active');
+          activePlayer.classList.remove('active');
 
-      // Safety timeout for mobile browsers (e.g. iOS) in case 'playing' event is throttled
-      safetyTimer = setTimeout(() => {
-        if (!transitionDone) {
-          performCrossfade();
+          setTimeout(() => {
+            activePlayer.pause();
+            const temp = activePlayer;
+            activePlayer = idlePlayer;
+            idlePlayer = temp;
+            isTransitioning = false;
+          }, 900);
+        };
+
+        idlePlayer.addEventListener('playing', performCrossfade, { once: true });
+
+        const playPromise = idlePlayer.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Cannot play next video (e.g. Low Power Mode) - cancel transition and keep active playing
+            isTransitioning = false;
+          });
         }
-      }, 1500);
-
-      const p = idlePlayer.play();
-      if (p !== undefined) {
-        p.catch(() => {
-          isTransitioning = false;
-          if (safetyTimer) clearTimeout(safetyTimer);
-        });
       }
+
+      cycleTimer = setInterval(nextVideo, clipDuration);
     }
-
-    // Advance when clip naturally ends OR after clipDuration
-    videoA.addEventListener('ended', nextVideo);
-    videoB.addEventListener('ended', nextVideo);
-
-    // Continuous looping timer
-    cycleTimer = setInterval(nextVideo, clipDuration);
   }
 
   // 8. Premium Parallax Subimages Effect (Continuous Full-Range Motion to Top of Main Image)
