@@ -2454,6 +2454,81 @@ section[id], div[id] {
   border: 1px solid var(--border-color);
 }
 
+/* Contact Form Tabs */
+.contact-form-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  padding: 0.4rem;
+  border-radius: var(--radius-lg);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+.form-tab-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.25rem;
+  border-radius: calc(var(--radius-lg) - 2px);
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.form-tab-btn:hover {
+  color: var(--text-dark);
+}
+
+.form-tab-btn.active {
+  background: #ffffff;
+  color: var(--primary-blue);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-tab-btn i {
+  font-size: 1rem;
+}
+
+.form-tab-content {
+  display: none;
+}
+
+.form-tab-content.active {
+  display: block;
+  animation: tabFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-form-tabs {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-tab-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.88rem;
+  }
+}
+
 .form-card h2 {
   font-size: 1.85rem;
   margin-bottom: 0.35rem;

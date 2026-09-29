@@ -639,18 +639,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 12. Pre-select Contact Form based on URL Query Parameters (Careers / Subcontractor)
-  const urlParams = new URLSearchParams(window.location.search);
-  const typeParam = urlParams.get('type');
-  const serviceTypeSelect = document.getElementById('serviceType');
-  const projectSectorSelect = document.getElementById('projectSector');
-  if (typeParam && serviceTypeSelect) {
-    if (typeParam === 'careers' || typeParam === 'employment' || typeParam === 'jobs') {
-      serviceTypeSelect.value = 'Employment / Field Crew Position (W-2 Applicant)';
-      if (projectSectorSelect) projectSectorSelect.value = 'Subcontracting / General Contractor Partner';
-    } else if (typeParam === 'subcontractor' || typeParam === 'sub' || typeParam === 'partner') {
-      serviceTypeSelect.value = 'Subcontractor / Crew Partnership (1099 Partner)';
-      if (projectSectorSelect) projectSectorSelect.value = 'Subcontracting / General Contractor Partner';
+  // 12. Contact Form Tab Switcher (Project Bid vs. Careers & Subcontractors)
+  const tabBtns = document.querySelectorAll('.form-tab-btn');
+  const tabContents = document.querySelectorAll('.form-tab-content');
+
+  function activateContactTab(tabId) {
+    if (!tabBtns.length || !tabContents.length) return;
+
+    tabBtns.forEach(btn => {
+      const isTarget = btn.getAttribute('data-tab') === tabId;
+      btn.classList.toggle('active', isTarget);
+      btn.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+    });
+
+    tabContents.forEach(content => {
+      const isTarget = content.id === tabId;
+      content.classList.toggle('active', isTarget);
+    });
+  }
+
+  if (tabBtns.length > 0) {
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetTab = btn.getAttribute('data-tab');
+        if (targetTab) activateContactTab(targetTab);
+      });
+    });
+
+    // Check URL parameters or hash to auto-activate careers tab
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get('tab');
+    const typeParam = urlParams.get('type');
+    const hash = window.location.hash;
+
+    if (tabParam === 'careers' || typeParam === 'careers' || typeParam === 'employment' || typeParam === 'subcontractor' || typeParam === 'jobs' || hash === '#careers' || hash === '#careersTab') {
+      activateContactTab('careersTab');
+      const formCard = document.querySelector('.form-card');
+      if (formCard) {
+        setTimeout(() => {
+          formCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
     }
   }
 
