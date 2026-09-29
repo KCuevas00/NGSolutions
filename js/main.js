@@ -668,6 +668,168 @@ document.addEventListener('DOMContentLoaded', () => {
       if (projectSectorSelect) projectSectorSelect.value = 'Subcontracting / General Contractor Partner';
     }
   }
+
+  // 13. Hero Typing Animation (Typewriter Effect)
+  function initHeroTypewriter() {
+    const targetEl = document.getElementById('heroTypedWord');
+    const cursorEl = document.querySelector('.itg-type-cursor');
+    if (!targetEl) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // Respect reduced motion preference
+    }
+
+    const words = [
+      'Operators.',
+      'HDD Crews.',
+      'Drillers.',
+      'Field Pros.'
+    ];
+
+    const ROTATE_WORDS = true;
+    const typeSpeed = 85;
+    const deleteSpeed = 40;
+    const holdWordMs = 2800;
+
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    // Clear initial text so it types out live
+    targetEl.textContent = '';
+    if (cursorEl) cursorEl.classList.add('typing');
+
+    function tick() {
+      const currentWord = words[wordIndex];
+
+      if (isDeleting) {
+        charIndex--;
+        targetEl.textContent = currentWord.substring(0, charIndex);
+        if (cursorEl) cursorEl.classList.add('typing');
+      } else {
+        charIndex++;
+        targetEl.textContent = currentWord.substring(0, charIndex);
+        if (cursorEl) cursorEl.classList.add('typing');
+      }
+
+      let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
+      if (!isDeleting) {
+        nextDelay += Math.floor(Math.random() * 20 - 10);
+      }
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        if (cursorEl) cursorEl.classList.remove('typing');
+
+        if (!ROTATE_WORDS) {
+          return;
+        }
+
+        isDeleting = true;
+        setTimeout(tick, holdWordMs);
+        return;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        if (cursorEl) cursorEl.classList.remove('typing');
+        setTimeout(tick, 350);
+        return;
+      }
+
+      setTimeout(tick, nextDelay);
+    }
+
+    // Short delay before typing begins on page load
+    setTimeout(tick, 400);
+  }
+
+  initHeroTypewriter();
+
+  // 14. Digit Counting Up Animations for Hero Numbers
+  function initHeroCounters() {
+    const counterElements = document.querySelectorAll('.itg-stat-num[data-target]');
+    if (!counterElements.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // Retain static rendered values
+    }
+
+    let hasRun = false;
+
+    function runCounters() {
+      if (hasRun) return;
+      hasRun = true;
+
+      const duration = 1800; // 1.8 seconds duration
+      const startTime = performance.now();
+
+      // Start all from 0
+      counterElements.forEach(el => {
+        const suffix = el.getAttribute('data-suffix') || '';
+        if (suffix) {
+          el.innerHTML = `0<small>${suffix}</small>`;
+        } else {
+          el.textContent = '0';
+        }
+      });
+
+      function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Ease-out cubic curve
+        const ease = 1 - Math.pow(1 - progress, 3);
+
+        counterElements.forEach(el => {
+          const target = parseFloat(el.getAttribute('data-target'));
+          if (isNaN(target)) return;
+
+          const currentVal = Math.round(target * ease);
+          const suffix = el.getAttribute('data-suffix') || '';
+
+          if (suffix) {
+            el.innerHTML = `${currentVal}<small>${suffix}</small>`;
+          } else {
+            el.textContent = currentVal;
+          }
+        });
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          // Final exact values
+          counterElements.forEach(el => {
+            const target = el.getAttribute('data-target');
+            const suffix = el.getAttribute('data-suffix') || '';
+            if (suffix) {
+              el.innerHTML = `${target}<small>${suffix}</small>`;
+            } else {
+              el.textContent = target;
+            }
+          });
+        }
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const heroStats = document.querySelector('.itg-hero-stats');
+    if (heroStats && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runCounters();
+            observer.disconnect();
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+      observer.observe(heroStats);
+    } else {
+      setTimeout(runCounters, 400);
+    }
+  }
+
+  initHeroCounters();
 });
 
 

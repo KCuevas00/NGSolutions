@@ -871,19 +871,41 @@ section[id], div[id] {
 
 .itg-hero-title-accent {
   color: #72d4ff;
-  display: inline-block;
+  display: inline;
   position: relative;
+  background: linear-gradient(135deg, #72d4ff 0%, #38bdf8 60%, #00a4e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.itg-hero-title-accent::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  right: -8px;
-  width: 8px;
-  height: 8px;
-  border-right: 2.5px solid #38bdf8;
-  border-bottom: 2.5px solid #38bdf8;
+/* Typing Caret / Cursor */
+.itg-type-cursor {
+  display: inline-block;
+  width: 3.5px;
+  height: 0.86em;
+  background-color: #38bdf8;
+  margin-left: 5px;
+  vertical-align: -0.04em;
+  border-radius: 1.5px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+  animation: itgBlinkCursor 0.85s infinite;
+}
+
+@keyframes itgBlinkCursor {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.itg-type-cursor.typing {
+  animation: none;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .itg-type-cursor {
+    display: none;
+  }
 }
 
 .itg-hero-lead {

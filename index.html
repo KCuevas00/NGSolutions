@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=8.1">
+  <link rel="stylesheet" href="css/style.css?v=8.2">
 </head>
 <body>
 
@@ -92,7 +92,7 @@
       <div class="itg-hero-text">
         <div class="itg-hero-kicker">10+ Years in the Field</div>
         <h1 class="itg-hero-title">
-          Built by <span class="itg-hero-title-accent">Operators.</span>
+          Built by <span class="itg-hero-title-accent" id="heroTypedWord">Operators.</span><span class="itg-type-cursor" aria-hidden="true"></span>
         </h1>
         <p class="itg-hero-lead">
           We specialize in horizontal directional drilling (HDD) and turnkey conduit placement—getting pipe in the ground safely, on schedule, and without tearing up property.
@@ -113,15 +113,15 @@
       <div class="container">
         <div class="itg-stats-grid">
           <div class="itg-stat-card">
-            <span class="itg-stat-num">10<small>+</small></span>
+            <span class="itg-stat-num" data-target="10" data-suffix="+">10<small>+</small></span>
             <span class="itg-stat-label">Years Field Experience</span>
           </div>
           <div class="itg-stat-card">
-            <span class="itg-stat-num">100<small>%</small></span>
+            <span class="itg-stat-num" data-target="100" data-suffix="%">100<small>%</small></span>
             <span class="itg-stat-label">811 Locate Compliance</span>
           </div>
           <div class="itg-stat-card">
-            <span class="itg-stat-num">5</span>
+            <span class="itg-stat-num" data-target="5" data-suffix="">5</span>
             <span class="itg-stat-label">Midwest States Served</span>
           </div>
           <div class="itg-stat-card">
@@ -733,6 +733,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=8.1"></script>
+  <script src="js/main.js?v=8.2"></script>
 </body>
 </html>
