@@ -653,6 +653,21 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // 12. Pre-select Contact Form based on URL Query Parameters (Careers / Subcontractor)
+  const urlParams = new URLSearchParams(window.location.search);
+  const typeParam = urlParams.get('type');
+  const serviceTypeSelect = document.getElementById('serviceType');
+  const projectSectorSelect = document.getElementById('projectSector');
+  if (typeParam && serviceTypeSelect) {
+    if (typeParam === 'careers' || typeParam === 'employment' || typeParam === 'jobs') {
+      serviceTypeSelect.value = 'Employment / Field Crew Position (W-2 Applicant)';
+      if (projectSectorSelect) projectSectorSelect.value = 'Subcontracting / General Contractor Partner';
+    } else if (typeParam === 'subcontractor' || typeParam === 'sub' || typeParam === 'partner') {
+      serviceTypeSelect.value = 'Subcontractor / Crew Partnership (1099 Partner)';
+      if (projectSectorSelect) projectSectorSelect.value = 'Subcontracting / General Contractor Partner';
+    }
+  }
 });
 
 
