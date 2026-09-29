@@ -773,14 +773,15 @@ section[id], div[id] {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%2300a4e4' stroke-width='1' stroke-opacity='0.05' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Ccircle cx='45' cy='40' r='2.5'/%3E%3Ccircle cx='70' cy='65' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Video Frame: Top-Right placement stretching into transparent navbar */
+/* Video Frame: Top-Right placement stretching into transparent navbar (Desktop: bold cinematic scale) */
 .itg-hero-video-wrap {
   position: absolute;
   top: 0;
   right: 0;
-  width: 50vw;
-  max-width: 680px;
-  height: 540px;
+  bottom: 82px;
+  width: 62vw;
+  max-width: 1320px;
+  min-width: 580px;
   z-index: 2;
   pointer-events: none;
 }
@@ -793,6 +794,18 @@ section[id], div[id] {
   background-color: #0b223d;
   box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 114, 206, 0.25);
   overflow: hidden;
+}
+
+/* Subtle edge gradient on desktop to seamlessly fade video into dark backdrop behind left-aligned text */
+.itg-hero-video-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: 
+    linear-gradient(90deg, rgba(7, 21, 39, 0.82) 0%, rgba(7, 21, 39, 0.4) 26%, rgba(7, 21, 39, 0) 55%),
+    linear-gradient(180deg, rgba(7, 21, 39, 0.45) 0%, rgba(7, 21, 39, 0) 18%);
 }
 
 .itg-hero-video-frame video,
@@ -865,6 +878,8 @@ section[id], div[id] {
 /* Hero Typography: Bottom-Left placement */
 .itg-hero-text {
   max-width: 600px;
+  position: relative;
+  z-index: 4;
 }
 
 .itg-hero-kicker {
@@ -1107,6 +1122,7 @@ section[id], div[id] {
     top: 0;
     left: 0;
     right: 0;
+    bottom: auto;
     height: 90px;
     background: linear-gradient(180deg, rgba(7, 21, 39, 0.6) 0%, rgba(7, 21, 39, 0) 100%);
     z-index: 2;
