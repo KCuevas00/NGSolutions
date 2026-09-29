@@ -256,7 +256,7 @@ ul {
   color: rgba(255, 255, 255, 0.85);
   font-size: 0.825rem;
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
   position: relative;
   z-index: 1001;
 }
@@ -286,7 +286,7 @@ ul {
   color: #72d4ff;
 }
 
-/* Base Site Header: Modern Transparent at Top */
+/* Base Site Header: Modern Transparent at Top (Zero Dividing Line) */
 .site-header {
   position: -webkit-sticky;
   position: sticky;
@@ -296,20 +296,21 @@ ul {
   background-color: rgba(255, 255, 255, 0);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border: none !important;
+  border-bottom: none !important;
   box-shadow: none;
   transition: background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Scrolled State & Mobile Menu Open State: Solid White Frosted Glass */
+/* Scrolled State & Mobile Menu Open State: Solid White Frosted Glass (Zero Line) */
 .site-header.scrolled,
 .site-header.menu-open {
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  border: none !important;
+  border-bottom: none !important;
   box-shadow: 0 4px 20px -2px rgba(7, 34, 59, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
 }
 
@@ -736,10 +737,10 @@ section[id], div[id] {
    ========================================================================== */
 .itg-hero-section {
   position: relative;
-  min-height: 85vh;
-  min-height: 85dvh;
+  min-height: 88vh;
+  min-height: 88dvh;
   margin-top: -84px;
-  padding: calc(84px + 3rem) 0 0;
+  padding: 0;
   background-color: #071527;
   color: #ffffff;
   overflow: hidden;
@@ -759,38 +760,32 @@ section[id], div[id] {
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%2300a4e4' stroke-width='1' stroke-opacity='0.05' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Ccircle cx='45' cy='40' r='2.5'/%3E%3Ccircle cx='70' cy='65' r='2.5'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.itg-hero-container {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  align-items: center;
-  gap: 3rem;
-  padding-bottom: 3.5rem;
-  flex-grow: 1;
-}
-
-/* Video Frame: Top-Right placement with angled/diagonal corner slash */
+/* Video Frame: Top-Right placement stretching into transparent navbar */
 .itg-hero-video-wrap {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  max-width: 680px;
+  height: 540px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .itg-hero-video-frame {
   position: relative;
   width: 100%;
-  max-width: 540px;
-  aspect-ratio: 16 / 10;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 84%);
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 82%);
   background-color: #0b223d;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(0, 114, 206, 0.25);
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 114, 206, 0.25);
   overflow: hidden;
 }
 
 .itg-hero-video-frame video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -800,8 +795,8 @@ section[id], div[id] {
 
 .itg-hero-video-badge {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: calc(84px + 1rem);
+  right: 1.5rem;
   background: rgba(7, 21, 39, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -816,7 +811,7 @@ section[id], div[id] {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  z-index: 2;
+  z-index: 3;
 }
 
 .itg-hero-video-badge::before {
@@ -828,9 +823,20 @@ section[id], div[id] {
   box-shadow: 0 0 8px #22c55e;
 }
 
+.itg-hero-container {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding-top: calc(84px + 3.75rem);
+  padding-bottom: 3.75rem;
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+}
+
 /* Hero Typography: Bottom-Left placement */
 .itg-hero-text {
-  max-width: 640px;
+  max-width: 600px;
 }
 
 .itg-hero-kicker {
@@ -977,36 +983,43 @@ section[id], div[id] {
   .itg-hero-section {
     min-height: auto;
     margin-top: -76px;
-    padding-top: calc(76px + 1.5rem);
+    padding-top: 0;
   }
 
-  .itg-hero-container {
-    grid-template-columns: 1fr;
-    display: flex;
-    flex-direction: column;
-    gap: 1.75rem;
-    padding-bottom: 2.5rem;
-  }
-
+  /* Pinned to Top-Right reaching behind the transparent navbar */
   .itg-hero-video-wrap {
-    order: 1;
-    width: 100%;
-    justify-content: flex-end;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 88%;
+    max-width: 420px;
+    height: 255px;
+    z-index: 1;
+    pointer-events: none;
   }
 
   .itg-hero-video-frame {
-    width: 90%;
-    max-width: 440px;
-    aspect-ratio: 16 / 10;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 16% 100%, 0 80%);
-    margin-left: auto;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 18% 100%, 0 78%);
+  }
+
+  .itg-hero-video-badge {
+    top: auto;
+    bottom: 0.85rem;
+    right: 0.85rem;
+    font-size: 0.68rem;
+  }
+
+  .itg-hero-container {
+    padding-top: calc(76px + 125px);
+    padding-bottom: 2.25rem;
+    display: block;
   }
 
   .itg-hero-text {
-    order: 2;
     width: 100%;
     max-width: 100%;
-    margin-top: -0.5rem;
   }
 
   .itg-hero-title {
@@ -1020,9 +1033,17 @@ section[id], div[id] {
 }
 
 @media (max-width: 480px) {
-  .itg-hero-video-frame {
+  .itg-hero-video-wrap {
     width: 92%;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 18% 100%, 0 78%);
+    height: 240px;
+  }
+
+  .itg-hero-video-frame {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 76%);
+  }
+
+  .itg-hero-container {
+    padding-top: calc(76px + 110px);
   }
 
   .itg-hero-title {

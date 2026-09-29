@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=8.0">
+  <link rel="stylesheet" href="css/style.css?v=8.1">
 </head>
 <body>
 
@@ -78,17 +78,16 @@
   <section class="itg-hero-section">
     <div class="itg-hero-bg-accent" aria-hidden="true"></div>
 
-    <div class="container itg-hero-container">
-      
-      <!-- Video Element: Positioned at Top-Right with Diagonal Cut (ITG Style) -->
-      <div class="itg-hero-video-wrap">
-        <div class="itg-hero-video-frame">
-          <span class="itg-hero-video-badge">Field Operations</span>
-          <video id="heroVideoA" class="hero-video-element active" autoplay muted playsinline webkit-playsinline preload="auto" src="videos/townhouse-6unit-conduit-install.mp4"></video>
-          <video id="heroVideoB" class="hero-video-element" muted playsinline webkit-playsinline preload="none"></video>
-        </div>
+    <!-- Video Element: Pinned to Top-Right stretching into navbar (ITG Style) -->
+    <div class="itg-hero-video-wrap">
+      <div class="itg-hero-video-frame">
+        <span class="itg-hero-video-badge">Field Operations</span>
+        <video id="heroVideoA" class="hero-video-element active" autoplay muted loop playsinline webkit-playsinline preload="auto" src="videos/townhouse-6unit-conduit-install.mp4"></video>
+        <video id="heroVideoB" class="hero-video-element" muted playsinline webkit-playsinline preload="none"></video>
       </div>
+    </div>
 
+    <div class="container itg-hero-container">
       <!-- Hero Text: Positioned at Bottom-Left (ITG Style) -->
       <div class="itg-hero-text">
         <div class="itg-hero-kicker">10+ Years in the Field</div>
@@ -107,7 +106,6 @@
           </a>
         </div>
       </div>
-
     </div>
 
     <!-- Stats Strip Integrated into Hero Bottom (ITG Style) -->
@@ -735,6 +733,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=8.0"></script>
+  <script src="js/main.js?v=8.1"></script>
 </body>
 </html>
