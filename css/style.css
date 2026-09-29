@@ -2544,14 +2544,15 @@ textarea.form-control {
 /* ==========================================================================
    EDITORIAL MODERNIST - SCHEDULE & TERRITORY
    ========================================================================== */
-.editorial-territory-section {
+.editorial-territory-section,
+.service-area-section {
   position: relative;
   background-color: #edf4f9;
   background-image: 
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23004b7a' stroke-width='1.2' stroke-opacity='0.075' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M0 40h45l25 25h50l20-20h20'/%3E%3Cpath d='M40 0v35l30 30v45l25 25v25'/%3E%3Cpath d='M0 120h35l25-25h40l20 20h40'/%3E%3Cpath d='M120 0v30l-20 20v40l25 25v45'/%3E%3Ccircle cx='45' cy='40' r='3.5'/%3E%3Ccircle cx='45' cy='40' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='120' cy='45' r='3.5'/%3E%3Ccircle cx='120' cy='45' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='70' cy='65' r='3.5'/%3E%3Ccircle cx='70' cy='65' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='60' cy='95' r='3.5'/%3E%3Ccircle cx='60' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3Ccircle cx='100' cy='95' r='3.5'/%3E%3Ccircle cx='100' cy='95' r='1' fill='%23004b7a' fill-opacity='0.08'/%3E%3C/g%3E%3C/svg%3E"),
     linear-gradient(180deg, #f8fbfe 0%, #edf4f9 100%);
   background-size: 160px 160px, 100% 100%;
-  padding: 6rem 0;
+  padding: 5rem 0;
   overflow: hidden;
   border-top: 1px solid rgba(0, 102, 178, 0.08);
   border-bottom: 1px solid rgba(0, 102, 178, 0.08);
@@ -3315,8 +3316,9 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-  .editorial-territory-section {
-    padding: 4rem 0;
+  .editorial-territory-section,
+  .service-area-section {
+    padding: 3.5rem 0;
   }
 
   .editorial-headline {
