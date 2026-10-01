@@ -687,18 +687,152 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 13. Typewriter Animation (Deactivated to prevent page layout shift on scroll)
+  // 13. Zero-Layout-Shift Typewriter Animation
   function initTypewriters() {
-    // Preserve full static text on all headers to eliminate layout shifts
-    document.querySelectorAll('.typed-accent').forEach(el => {
-      const dataText = el.getAttribute('data-text');
-      if (dataText) {
-        el.innerHTML = dataText;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.itg-type-cursor, .typed-cursor').forEach(el => el.remove());
+      return;
+    }
+
+    const typeElements = document.querySelectorAll('.typed-accent, #heroTypedWord');
+    if (!typeElements.length) return;
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    typeElements.forEach(targetEl => {
+      const isLooping = targetEl.id === 'heroTypedWord' || targetEl.getAttribute('data-loop') === 'true';
+
+      // Find or create cursor
+      let cursorEl = targetEl.nextElementSibling;
+      if (!cursorEl || (!cursorEl.classList.contains('typed-cursor') && !cursorEl.classList.contains('itg-type-cursor'))) {
+        cursorEl = document.createElement('span');
+        cursorEl.className = isLooping ? 'itg-type-cursor' : 'typed-cursor';
+        if (targetEl.classList.contains('typed-accent-blue')) {
+          cursorEl.classList.add('typed-cursor-blue');
+        }
+        cursorEl.setAttribute('aria-hidden', 'true');
+        targetEl.parentNode.insertBefore(cursorEl, targetEl.nextSibling);
       }
-    });
-    // Remove blinking caret elements so headlines render cleanly and stably
-    document.querySelectorAll('.typed-cursor, .itg-type-cursor').forEach(el => {
-      el.remove();
+
+      let words = [];
+      const dataWords = targetEl.getAttribute('data-words');
+      const dataText = targetEl.getAttribute('data-text');
+
+      if (isLooping) {
+        if (dataWords) {
+          if (dataWords.includes('|')) {
+            words = dataWords.split('|').map(s => s.trim()).filter(Boolean);
+          } else {
+            try {
+              words = JSON.parse(dataWords);
+            } catch (e) {
+              words = [dataWords.trim()];
+            }
+          }
+        } else {
+          words = ['Fiber Optic Placement.', 'Telecom Infrastructure.', 'Conduit Installation.', 'Trenchless Boring.'];
+        }
+      } else {
+        const singleText = dataText || targetEl.textContent.trim();
+        words = [singleText];
+      }
+
+      if (!words || !words.length) return;
+
+      const typeSpeed = isLooping ? 65 : 35;
+      const deleteSpeed = 30;
+      const holdWordMs = 2600;
+
+      let wordIndex = 0;
+      let charIndex = isLooping ? words[0].length : 0;
+      let isDeleting = false;
+      let started = false;
+
+      // Ghost Technique: visible characters + visibility:hidden ghost characters
+      // Keeps DOM bounding box, line wrapping, and container height 100% frozen!
+      function renderText(currentWord, count) {
+        const visible = currentWord.substring(0, count);
+        const ghost = currentWord.substring(count);
+        targetEl.innerHTML = `${escapeHtml(visible)}<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(ghost)}</span>`;
+      }
+
+      function tick() {
+        const currentWord = words[wordIndex];
+
+        if (isDeleting) {
+          charIndex--;
+          renderText(currentWord, charIndex);
+        } else {
+          charIndex++;
+          renderText(currentWord, charIndex);
+        }
+
+        let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
+        if (!isDeleting) {
+          nextDelay += Math.floor(Math.random() * 12 - 6);
+        }
+
+        // Finished typing word
+        if (!isDeleting && charIndex === currentWord.length) {
+          if (!isLooping) {
+            // Section header: lock final text cleanly
+            targetEl.textContent = currentWord;
+            return;
+          }
+          isDeleting = true;
+          setTimeout(tick, holdWordMs);
+          return;
+        } else if (isDeleting && charIndex === 0) {
+          // Finished backspacing, switch to next phrase
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          // Pre-reserve space for the next phrase instantly with ghost
+          renderText(words[wordIndex], 0);
+          setTimeout(tick, 280);
+          return;
+        }
+
+        setTimeout(tick, nextDelay);
+      }
+
+      function startTyping() {
+        if (started) return;
+        started = true;
+        if (isLooping) {
+          // Hero begins with first full phrase visible, pauses, then backspaces
+          charIndex = words[0].length;
+          isDeleting = true;
+          setTimeout(tick, 2400);
+        } else {
+          // Section header begins when scrolled into view
+          renderText(words[0], 0);
+          setTimeout(tick, 150);
+        }
+      }
+
+      if (isLooping) {
+        setTimeout(startTyping, 800);
+      } else if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              startTyping();
+              observer.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.15
+        });
+        observer.observe(targetEl);
+      } else {
+        setTimeout(startTyping, 500);
+      }
     });
   }
 
