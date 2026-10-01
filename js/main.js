@@ -9,11 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelector('.nav-links');
   const header = document.querySelector('.site-header');
 
-  // Ensure backdrop element exists in the DOM
+  // Ensure backdrop element exists directly in document.body for true full-screen coverage
   let navBackdrop = document.querySelector('.nav-backdrop');
   if (!navBackdrop) {
     navBackdrop = document.createElement('div');
     navBackdrop.className = 'nav-backdrop';
+    document.body.appendChild(navBackdrop);
+  } else if (navBackdrop.parentElement !== document.body) {
     document.body.appendChild(navBackdrop);
   }
 
@@ -25,11 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('nav-drawer-open');
     if (mobileToggle) {
       mobileToggle.setAttribute('aria-expanded', 'true');
-      const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-xmark');
-      }
     }
   }
 
@@ -41,11 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('nav-drawer-open');
     if (mobileToggle) {
       mobileToggle.setAttribute('aria-expanded', 'false');
-      const icon = mobileToggle.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-xmark');
-        icon.classList.add('fa-bars');
-      }
     }
   }
 
@@ -59,14 +51,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Clicking blurry backdrop closes the drawer
     if (navBackdrop) {
-      navBackdrop.addEventListener('click', closeMobileMenu);
+      navBackdrop.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeMobileMenu();
+      });
+      // Prevent background scrolling through the backdrop on touch devices
+      navBackdrop.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+      }, { passive: false });
     }
 
     // Close button inside drawer
     document.addEventListener('click', (e) => {
       if (e.target.closest('.mobile-drawer-close')) {
+        e.preventDefault();
         closeMobileMenu();
+      }
+    });
+
+    // Tapping anywhere outside the drawer (e.g. background or header margins) closes it
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('active')) {
+        if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+          closeMobileMenu();
+        }
       }
     });
 
@@ -83,6 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
         closeMobileMenu();
       }
     });
+
+    // Close menu automatically if viewport is resized to desktop width
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
   }
 
   // 2. Transparent-to-Solid Navbar on Scroll
@@ -90,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateNavbarScroll() {
     if (!header) return;
+    if (header.classList.contains('menu-open')) return;
     const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     if (scrollPos > 20) {
       header.classList.add('scrolled');
@@ -669,141 +687,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 13. Universal Typewriter Animation for Headers
+  // 13. Typewriter Animation (Deactivated to prevent page layout shift on scroll)
   function initTypewriters() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return; // Respect reduced motion preference
-    }
-
-    const typeElements = document.querySelectorAll('.typed-accent, #heroTypedWord');
-    if (!typeElements.length) return;
-
-    typeElements.forEach(targetEl => {
-      // Find or create cursor
-      let cursorEl = targetEl.nextElementSibling;
-      if (!cursorEl || (!cursorEl.classList.contains('typed-cursor') && !cursorEl.classList.contains('itg-type-cursor'))) {
-        cursorEl = document.createElement('span');
-        cursorEl.className = 'typed-cursor';
-        if (targetEl.classList.contains('typed-accent-blue')) {
-          cursorEl.classList.add('typed-cursor-blue');
-        }
-        cursorEl.setAttribute('aria-hidden', 'true');
-        targetEl.parentNode.insertBefore(cursorEl, targetEl.nextSibling);
+    // Preserve full static text on all headers to eliminate layout shifts
+    document.querySelectorAll('.typed-accent').forEach(el => {
+      const dataText = el.getAttribute('data-text');
+      if (dataText) {
+        el.innerHTML = dataText;
       }
-
-      // Check if this element should loop & backspace (Hero only, unless explicitly data-loop="true")
-      const isLooping = targetEl.id === 'heroTypedWord' || targetEl.getAttribute('data-loop') === 'true';
-
-      let words = [];
-      const dataWords = targetEl.getAttribute('data-words');
-      const dataText = targetEl.getAttribute('data-text');
-
-      if (isLooping) {
-        if (dataWords) {
-          if (dataWords.includes('|')) {
-            words = dataWords.split('|').map(s => s.trim()).filter(Boolean);
-          } else {
-            try {
-              words = JSON.parse(dataWords);
-            } catch (e) {
-              words = [dataWords.trim()];
-            }
-          }
-        } else if (targetEl.id === 'heroTypedWord') {
-          words = ['Operators.', 'HDD Crews.', 'Drillers.', 'Field Pros.'];
-        } else {
-          words = [targetEl.textContent.trim()];
-        }
-      } else {
-        // Single-pass typing: type once and done
-        const singleText = dataText || (dataWords ? dataWords.split('|')[0].trim() : targetEl.textContent.trim());
-        words = [singleText];
-      }
-
-      if (!words || !words.length) return;
-
-      // Faster, punchy typing for single-pass headers (45ms), slightly deliberate for hero (80ms)
-      const defaultSpeed = isLooping ? 80 : 45;
-      const typeSpeed = parseInt(targetEl.getAttribute('data-type-speed'), 10) || defaultSpeed;
-      const deleteSpeed = parseInt(targetEl.getAttribute('data-delete-speed'), 10) || 40;
-      const holdWordMs = parseInt(targetEl.getAttribute('data-hold-time'), 10) || 2800;
-
-      let wordIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      let started = false;
-
-      function tick() {
-        const currentWord = words[wordIndex];
-
-        if (isDeleting) {
-          charIndex--;
-          targetEl.textContent = currentWord.substring(0, charIndex);
-          if (cursorEl) cursorEl.classList.add('typing');
-        } else {
-          charIndex++;
-          targetEl.textContent = currentWord.substring(0, charIndex);
-          if (cursorEl) cursorEl.classList.add('typing');
-        }
-
-        let nextDelay = isDeleting ? deleteSpeed : typeSpeed;
-        if (!isDeleting) {
-          nextDelay += Math.floor(Math.random() * 16 - 8);
-        }
-
-        // Reached end of current word
-        if (!isDeleting && charIndex === currentWord.length) {
-          if (cursorEl) cursorEl.classList.remove('typing'); // Leave cursor blinking
-          
-          if (!isLooping) {
-            // Non-hero header: Finished typing! Leave text and keep cursor blinking indefinitely.
-            return;
-          }
-
-          isDeleting = true;
-          setTimeout(tick, holdWordMs);
-          return;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          wordIndex = (wordIndex + 1) % words.length;
-          if (cursorEl) cursorEl.classList.remove('typing');
-          setTimeout(tick, 350);
-          return;
-        }
-
-        setTimeout(tick, nextDelay);
-      }
-
-      function startTyping() {
-        if (started) return;
-        started = true;
-        targetEl.textContent = '';
-        if (cursorEl) cursorEl.classList.add('typing');
-        setTimeout(tick, 250);
-      }
-
-      // Check if element is already in viewport (e.g. Hero)
-      const rect = targetEl.getBoundingClientRect();
-      const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (inViewport || targetEl.id === 'heroTypedWord') {
-        setTimeout(startTyping, 400);
-      } else if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              startTyping();
-              observer.disconnect();
-            }
-          });
-        }, {
-          threshold: 0.15,
-          rootMargin: '0px 0px -40px 0px'
-        });
-        observer.observe(targetEl);
-      } else {
-        setTimeout(startTyping, 600);
-      }
+    });
+    // Remove blinking caret elements so headlines render cleanly and stably
+    document.querySelectorAll('.typed-cursor, .itg-type-cursor').forEach(el => {
+      el.remove();
     });
   }
 
