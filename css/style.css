@@ -121,6 +121,13 @@ ul {
   padding-right: 1.5rem;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+}
+
 /* ==========================================================================
    BUTTONS & BADGES
    ========================================================================== */
@@ -6320,7 +6327,8 @@ textarea.form-control {
 
 @media (max-width: 900px) {
   .service-detail-block {
-    padding: 1.75rem !important;
+    padding: 2rem 1.5rem !important;
+    margin-bottom: 2.5rem !important;
   }
   .service-detail-block > div {
     grid-template-columns: 1fr !important;
@@ -6329,7 +6337,223 @@ textarea.form-control {
   .service-detail-block > div > div:nth-child(2) {
     order: 2 !important;
   }
+  #local-utilities {
+    padding: 2.25rem 1.5rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+  #process {
+    padding: 2.25rem 1.5rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+  #safety {
+    padding: 2rem 1.5rem !important;
+  }
 }
+
+@media (max-width: 640px) {
+  main.section-light {
+    padding: 2.5rem 0 !important;
+  }
+
+  .section-header {
+    margin-bottom: 2rem !important;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Service Detail Blocks */
+  .service-detail-block {
+    padding: 1.35rem 1rem !important;
+    margin-bottom: 1.75rem !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  .service-detail-block h2 {
+    font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .service-detail-block p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .service-detail-block img {
+    height: 220px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .service-pill {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.75rem !important;
+    white-space: normal !important;
+    word-break: break-word;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Feature Lists */
+  .service-features {
+    gap: 0.6rem !important;
+    padding-left: 0 !important;
+  }
+
+  .service-features li {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.55rem !important;
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .service-features li i {
+    margin-top: 0.22rem !important;
+    flex-shrink: 0 !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Local Utilities Section */
+  #local-utilities {
+    padding: 1.5rem 1rem !important;
+    margin-bottom: 1.75rem !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  #local-utilities h2 {
+    font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  #local-utilities p {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .local-utilities-grid,
+  #local-utilities > div:last-child {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .local-utility-card,
+  #local-utilities div[style*="background: #f8fafc"] {
+    padding: 1.25rem 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .local-utility-card h3,
+  #local-utilities div[style*="background: #f8fafc"] h3 {
+    font-size: 1.18rem !important;
+  }
+
+  .local-utility-card ul,
+  #local-utilities ul {
+    padding-left: 0 !important;
+  }
+
+  .local-utility-card ul li,
+  #local-utilities ul li {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.45 !important;
+  }
+
+  .local-utility-card ul li i,
+  #local-utilities ul li i {
+    margin-top: 0.22rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Process Section */
+  #process {
+    padding: 1.5rem 1rem !important;
+    margin-bottom: 1.75rem !important;
+    border-radius: var(--radius-md) !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  #process h2 {
+    font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    word-break: break-word;
+  }
+
+  #process p {
+    font-size: 0.95rem !important;
+  }
+
+  .about-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .about-step-item {
+    padding: 1.15rem 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .about-step-item h4 {
+    font-size: 1.05rem !important;
+  }
+
+  .about-step-item p {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Safety & Fleet Section */
+  #safety {
+    padding: 1.5rem 1rem !important;
+    border-radius: var(--radius-md) !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+  }
+
+  #safety > div {
+    padding: 0 0.25rem;
+  }
+
+  #safety h3 {
+    font-size: 1.15rem !important;
+  }
+
+  #safety p {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* CTA Banner on Services page */
+  .cta-banner h2 {
+    font-size: clamp(1.5rem, 6vw, 2.1rem) !important;
+    line-height: 1.25 !important;
+  }
+}
+
 
 /* ==========================================================================
    Visual Change Highlighting (Review Mode)
