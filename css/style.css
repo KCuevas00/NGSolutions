@@ -819,7 +819,7 @@ section[id], div[id] {
   position: relative;
   width: 100%;
   height: 100%;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 82%);
+  clip-path: none;
   background-color: #0b223d;
   box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 114, 206, 0.25);
   overflow: hidden;
@@ -956,15 +956,15 @@ section[id], div[id] {
 .itg-hero-title-accent,
 .typed-accent,
 .typed-accent-blue {
-  color: #0088cc;
+  color: #38bdf8;
   display: inline;
   position: relative;
-  background: linear-gradient(135deg, #0088cc 0%, #00a4e4 55%, #38bdf8 100%);
+  background: linear-gradient(135deg, #00a4e4 0%, #38bdf8 55%, #72d4ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Radiant electric cyan-blue for Hero & Dark sections (CTA banner, etc.) */
+/* Radiant light sky-blue for Hero & Dark sections (CTA banner, etc.) matching Serving Illinois & the Midwest */
 #heroTypedWord,
 .itg-hero-title-accent,
 .itg-hero-section .typed-accent,
@@ -978,7 +978,7 @@ section[id], div[id] {
 .section-dark .typed-accent,
 .bg-dark .typed-accent {
   color: #38bdf8 !important;
-  background: linear-gradient(135deg, #72d4ff 0%, #38bdf8 50%, #00a4e4 100%) !important;
+  background: linear-gradient(135deg, #38bdf8 0%, #72d4ff 50%, #38bdf8 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -989,20 +989,20 @@ section[id], div[id] {
   display: inline-block !important;
   width: 3px;
   height: 0.85em;
-  background-color: #00a4e4;
+  background-color: #38bdf8;
   margin-left: 3px;
   vertical-align: -0.04em;
   border-radius: 1px;
   animation: itgTypeBlink 0.85s infinite;
-  box-shadow: 0 0 10px rgba(0, 164, 228, 0.6);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
   -webkit-text-fill-color: initial !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
 }
 
 .typed-cursor-blue {
-  background-color: #00a4e4;
-  box-shadow: 0 0 10px rgba(0, 164, 228, 0.6);
+  background-color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
   -webkit-text-fill-color: initial !important;
   -webkit-background-clip: border-box !important;
   background-clip: border-box !important;
@@ -1200,7 +1200,7 @@ section[id], div[id] {
   .itg-hero-video-frame {
     width: 100%;
     height: 100%;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%) !important;
+    clip-path: none !important;
     border-radius: 0;
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
     background-color: #040d19;
