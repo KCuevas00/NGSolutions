@@ -700,14 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Remove any static cursors from HTML so cursor is dynamically placed at the active typing tip
     document.querySelectorAll('.itg-type-cursor, .typed-cursor').forEach(el => el.remove());
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
     typeElements.forEach(targetEl => {
       const isLooping = targetEl.id === 'heroTypedWord' || targetEl.getAttribute('data-loop') === 'true';
 
@@ -736,6 +728,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!words || !words.length) return;
 
+      const cursorClass = isLooping ? 'itg-type-cursor' : 'typed-cursor';
+      const cursorEl = document.createElement('span');
+      cursorEl.className = cursorClass;
+      cursorEl.setAttribute('aria-hidden', 'true');
+
       const typeSpeed = isLooping ? 65 : 35;
       const deleteSpeed = 30;
       const holdWordMs = 2600;
@@ -745,18 +742,12 @@ document.addEventListener('DOMContentLoaded', () => {
       let isDeleting = false;
       let started = false;
 
-      // Dynamic typing tip: Cursor sits right between visible and ghost characters!
-      // This ensures the cursor moves character-by-character with the text as it types or deletes.
+      // Pure textNode rendering + cursor element:
+      // Completely eliminates ghost text issues with -webkit-background-clip: text,
+      // and guarantees cursor advances dynamically with each typed character.
       function renderText(currentWord, count) {
-        const visible = currentWord.substring(0, count);
-        const ghost = currentWord.substring(count);
-        const cursorClass = isLooping ? 'itg-type-cursor' : 'typed-cursor';
-        const cursorHtml = `<span class="${cursorClass}" aria-hidden="true"></span>`;
-        if (ghost.length > 0) {
-          targetEl.innerHTML = `${escapeHtml(visible)}${cursorHtml}<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(ghost)}</span>`;
-        } else {
-          targetEl.innerHTML = `${escapeHtml(visible)}${cursorHtml}`;
-        }
+        targetEl.textContent = currentWord.substring(0, count);
+        targetEl.appendChild(cursorEl);
       }
 
       function tick() {
@@ -789,7 +780,6 @@ document.addEventListener('DOMContentLoaded', () => {
           // Finished backspacing, switch to next phrase
           isDeleting = false;
           wordIndex = (wordIndex + 1) % words.length;
-          // Pre-reserve space for the next phrase instantly with ghost
           renderText(words[wordIndex], 0);
           setTimeout(tick, 280);
           return;
@@ -816,25 +806,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (isLooping) {
-        // Initially render full first phrase with cursor at the end
+        // Hero initially shows full first phrase, then backspaces
         renderText(words[0], words[0].length);
         setTimeout(startTyping, 800);
-      } else if ('IntersectionObserver' in window) {
-        // Pre-reserve space with ghost (cursor hidden until typing starts)
-        targetEl.innerHTML = `<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(words[0])}</span>`;
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              startTyping();
-              observer.disconnect();
-            }
-          });
-        }, {
-          threshold: 0.15
-        });
-        observer.observe(targetEl);
       } else {
-        setTimeout(startTyping, 500);
+        // Section headers: clear text so it types out live into empty space
+        targetEl.textContent = '';
+
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                startTyping();
+                observer.disconnect();
+              }
+            });
+          }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px 50px 0px'
+          });
+          observer.observe(targetEl);
+        } else {
+          setTimeout(startTyping, 500);
+        }
       }
     });
   }

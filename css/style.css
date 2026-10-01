@@ -968,6 +968,7 @@ section[id], div[id] {
 .itg-hero .itg-hero-title-accent,
 .hero .typed-accent,
 .cta-banner .typed-accent,
+.cta-banner-section .typed-accent,
 .cta-banner-title .typed-accent,
 .section-dark .typed-accent,
 .bg-dark .typed-accent {
@@ -1007,6 +1008,7 @@ section[id], div[id] {
 .itg-hero .typed-cursor,
 .cta-banner .itg-type-cursor,
 .cta-banner .typed-cursor,
+.cta-banner-section .typed-cursor,
 .section-dark .typed-cursor,
 .bg-dark .typed-cursor {
   background-color: #38bdf8;
