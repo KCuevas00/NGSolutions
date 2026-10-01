@@ -697,6 +697,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const typeElements = document.querySelectorAll('.typed-accent, #heroTypedWord');
     if (!typeElements.length) return;
 
+    // Remove any static cursors from HTML so cursor is dynamically placed at the active typing tip
+    document.querySelectorAll('.itg-type-cursor, .typed-cursor').forEach(el => el.remove());
+
     function escapeHtml(str) {
       return String(str)
         .replace(/&/g, '&amp;')
@@ -707,18 +710,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     typeElements.forEach(targetEl => {
       const isLooping = targetEl.id === 'heroTypedWord' || targetEl.getAttribute('data-loop') === 'true';
-
-      // Find or create cursor
-      let cursorEl = targetEl.nextElementSibling;
-      if (!cursorEl || (!cursorEl.classList.contains('typed-cursor') && !cursorEl.classList.contains('itg-type-cursor'))) {
-        cursorEl = document.createElement('span');
-        cursorEl.className = isLooping ? 'itg-type-cursor' : 'typed-cursor';
-        if (targetEl.classList.contains('typed-accent-blue')) {
-          cursorEl.classList.add('typed-cursor-blue');
-        }
-        cursorEl.setAttribute('aria-hidden', 'true');
-        targetEl.parentNode.insertBefore(cursorEl, targetEl.nextSibling);
-      }
 
       let words = [];
       const dataWords = targetEl.getAttribute('data-words');
@@ -754,12 +745,18 @@ document.addEventListener('DOMContentLoaded', () => {
       let isDeleting = false;
       let started = false;
 
-      // Ghost Technique: visible characters + visibility:hidden ghost characters
-      // Keeps DOM bounding box, line wrapping, and container height 100% frozen!
+      // Dynamic typing tip: Cursor sits right between visible and ghost characters!
+      // This ensures the cursor moves character-by-character with the text as it types or deletes.
       function renderText(currentWord, count) {
         const visible = currentWord.substring(0, count);
         const ghost = currentWord.substring(count);
-        targetEl.innerHTML = `${escapeHtml(visible)}<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(ghost)}</span>`;
+        const cursorClass = isLooping ? 'itg-type-cursor' : 'typed-cursor';
+        const cursorHtml = `<span class="${cursorClass}" aria-hidden="true"></span>`;
+        if (ghost.length > 0) {
+          targetEl.innerHTML = `${escapeHtml(visible)}${cursorHtml}<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(ghost)}</span>`;
+        } else {
+          targetEl.innerHTML = `${escapeHtml(visible)}${cursorHtml}`;
+        }
       }
 
       function tick() {
@@ -781,8 +778,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Finished typing word
         if (!isDeleting && charIndex === currentWord.length) {
           if (!isLooping) {
-            // Section header: lock final text cleanly
-            targetEl.textContent = currentWord;
+            // Section header: stay finished with cursor blinking at the end
+            renderText(currentWord, currentWord.length);
             return;
           }
           isDeleting = true;
@@ -807,18 +804,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isLooping) {
           // Hero begins with first full phrase visible, pauses, then backspaces
           charIndex = words[0].length;
+          renderText(words[0], charIndex);
           isDeleting = true;
           setTimeout(tick, 2400);
         } else {
           // Section header begins when scrolled into view
+          charIndex = 0;
           renderText(words[0], 0);
           setTimeout(tick, 150);
         }
       }
 
       if (isLooping) {
+        // Initially render full first phrase with cursor at the end
+        renderText(words[0], words[0].length);
         setTimeout(startTyping, 800);
       } else if ('IntersectionObserver' in window) {
+        // Pre-reserve space with ghost (cursor hidden until typing starts)
+        targetEl.innerHTML = `<span style="visibility:hidden;pointer-events:none;" aria-hidden="true">${escapeHtml(words[0])}</span>`;
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {

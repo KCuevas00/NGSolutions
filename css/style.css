@@ -946,32 +946,71 @@ section[id], div[id] {
   white-space: nowrap;
 }
 
-.itg-hero-title-accent {
-  color: #72d4ff;
+.itg-hero-title-accent,
+.typed-accent {
+  color: #0072ce;
   display: inline;
   position: relative;
+  background: linear-gradient(135deg, #005bb5 0%, #0072ce 55%, #00a4e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.typed-accent-blue {
+  color: #0072ce;
+  background: linear-gradient(135deg, #005bb5 0%, #0072ce 55%, #00a4e4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Vibrant bright blue / cyan gradient on dark backgrounds (Hero, CTA banner, dark sections) */
+.itg-hero .typed-accent,
+.itg-hero .itg-hero-title-accent,
+.hero .typed-accent,
+.cta-banner .typed-accent,
+.cta-banner-title .typed-accent,
+.section-dark .typed-accent,
+.bg-dark .typed-accent {
+  color: #72d4ff;
   background: linear-gradient(135deg, #72d4ff 0%, #38bdf8 60%, #00a4e4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Typing Caret / Cursor - zero layout shift with smooth pulse */
+/* Typing Caret / Cursor - dynamically tracks typing tip with zero layout shift */
 .itg-type-cursor,
 .typed-cursor {
   display: inline-block !important;
   width: 3px;
-  height: 0.82em;
-  background-color: #38bdf8;
-  margin-left: 4px;
+  height: 0.85em;
+  background-color: #0072ce;
+  margin-left: 3px;
   vertical-align: -0.04em;
   border-radius: 1px;
   animation: itgTypeBlink 0.85s infinite;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 8px rgba(0, 114, 206, 0.5);
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
 }
 
 .typed-cursor-blue {
-  background-color: var(--primary-blue, #0072ce);
+  background-color: #0072ce;
   box-shadow: 0 0 8px rgba(0, 114, 206, 0.5);
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Glowing sky-blue cursor on dark backgrounds */
+.itg-hero .itg-type-cursor,
+.itg-hero .typed-cursor,
+.cta-banner .itg-type-cursor,
+.cta-banner .typed-cursor,
+.section-dark .typed-cursor,
+.bg-dark .typed-cursor {
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.7);
 }
 
 @keyframes itgTypeBlink {
@@ -1162,7 +1201,7 @@ section[id], div[id] {
   }
 
   .itg-hero-title {
-    font-size: 2.35rem;
+    font-size: clamp(1.85rem, 6vw, 2.25rem);
     margin-bottom: 1rem;
   }
 
@@ -1199,8 +1238,8 @@ section[id], div[id] {
   }
 
   .itg-hero-title {
-    font-size: 2.05rem;
-    line-height: 1.12;
+    font-size: clamp(1.55rem, 5.5vw, 1.85rem);
+    line-height: 1.15;
   }
 
   .itg-hero-lead {
