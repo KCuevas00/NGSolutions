@@ -304,18 +304,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 6. Contact & Estimate Form Submission via FormSubmit.co
-  const quoteForm = document.getElementById('contactQuoteForm');
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', async (e) => {
+  // 6. Form Submission via Web3Forms (Project Estimates & Careers Intake)
+  function setupWeb3Form(formId, statusBoxId, successMessage, loadingText) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const submitBtn = quoteForm.querySelector('button[type="submit"]');
-      const statusBox = document.getElementById('formStatus');
-      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '<i class="fa-solid fa-paper-plane"></i> Submit Request for Project Bid';
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const statusBox = document.getElementById(statusBoxId);
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Submit';
 
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting Request...';
+        submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${loadingText}`;
       }
 
       if (statusBox) {
@@ -323,34 +325,31 @@ document.addEventListener('DOMContentLoaded', () => {
         statusBox.className = 'form-status';
       }
 
-      const formData = new FormData(quoteForm);
+      const formData = new FormData(form);
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/ngsolutionsservicesllc@gmail.com', {
+        const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          headers: {
-            'Accept': 'application/json'
-          },
           body: formData
         });
 
         const result = await response.json();
 
-        if (response.ok || result.success === 'true' || result.success === true) {
+        if (response.status === 200 && result.success) {
           if (statusBox) {
             statusBox.className = 'form-status success';
-            statusBox.innerHTML = '<i class="fa-solid fa-circle-check"></i> <strong>Thank you!</strong> Your project bid request has been submitted. An N&amp;G Solutions Services specialist will review your details and contact you shortly.';
+            statusBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${successMessage}`;
             statusBox.style.display = 'block';
             statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }
-          quoteForm.reset();
+          form.reset();
         } else {
           throw new Error(result.message || 'Form submission failed');
         }
       } catch (err) {
         if (statusBox) {
           statusBox.className = 'form-status error';
-          statusBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> <strong>Note:</strong> We couldn\'t submit online at this moment. Please call our office directly at <a href="tel:2246338813" style="color: inherit; text-decoration: underline; font-weight: 700;">(224) 633-8813</a> or email <a href="mailto:ngsolutionsservicesllc@gmail.com" style="color: inherit; text-decoration: underline; font-weight: 700;">ngsolutionsservicesllc@gmail.com</a>.';
+          statusBox.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> <strong>Note:</strong> We couldn\'t submit online at this moment. Please call our team directly at <a href="tel:2246338813" style="color: inherit; text-decoration: underline; font-weight: 700;">(224) 633-8813</a> or email <a href="mailto:ngsolutionsservicesllc@gmail.com" style="color: inherit; text-decoration: underline; font-weight: 700;">ngsolutionsservicesllc@gmail.com</a>.';
           statusBox.style.display = 'block';
           statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
@@ -362,6 +361,20 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  setupWeb3Form(
+    'contactQuoteForm',
+    'formStatus',
+    '<strong>Thank you!</strong> Your project bid request has been submitted. An N&amp;G Solutions Services specialist will review your details and contact you shortly.',
+    'Submitting Request...'
+  );
+
+  setupWeb3Form(
+    'careersIntakeForm',
+    'careersFormStatus',
+    '<strong>Thank you!</strong> Your intake information has been received. An N&amp;G Solutions team member will review your qualifications or crew details and contact you shortly.',
+    'Sending Information...'
+  );
 
   // 7. Continuous Looping Video Hero Playlist with Safe Cross-Fade
   const videoA = document.getElementById('heroVideoA');

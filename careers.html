@@ -187,14 +187,16 @@
         
         <!-- Application / Partner Form Card -->
         <div class="form-card">
+          <div id="careersFormStatus" class="form-status"></div>
           <span class="badge badge-cyan" style="margin-bottom: 0.5rem;"><i class="fa-solid fa-paper-plane"></i> Direct Intake</span>
           <h2>Connect With Us</h2>
           <p class="form-subtitle">Let us know if you want to join our crew as an employee or partner with us as a subcontractor.</p>
 
-          <form id="careersIntakeForm" action="https://formsubmit.co/ngsolutionsservicesllc@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="New Employment / Subcontractor Submission - N&G Solutions Services LLC">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_captcha" value="false">
+          <form id="careersIntakeForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="8b3a81f1-a577-44de-a24b-9cf1d6654278">
+            <input type="hidden" name="subject" value="New Employment / Subcontractor Submission - N&G Solutions Services LLC">
+            <input type="hidden" name="from_name" value="N&G Solutions Services Website">
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <!-- Primary Question: Employee or Subcontractor -->
             <div class="form-group" style="background: rgba(0, 136, 204, 0.05); border: 1.5px solid rgba(0, 136, 204, 0.2); border-radius: 12px; padding: 1rem 0.85rem; margin-bottom: 1.5rem; box-sizing: border-box; max-width: 100%;">
@@ -423,6 +425,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=10.2"></script>
+  <script src="js/main.js?v=10.3"></script>
 </body>
 </html>
