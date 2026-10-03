@@ -274,18 +274,23 @@ ul {
   z-index: 1001;
 }
 
+.top-bar .container {
+  max-width: 1440px;
+}
+
 .top-bar-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
 .top-bar-left, .top-bar-right {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.15rem;
+  white-space: nowrap;
 }
 
 .top-bar a {
@@ -297,6 +302,21 @@ ul {
 
 .top-bar a:hover {
   color: #72d4ff;
+}
+
+@media (max-width: 1200px) {
+  .top-bar-left span:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .top-bar-left {
+    display: none;
+  }
+  .top-bar-inner {
+    justify-content: center;
+  }
 }
 
 /* Base Site Header: Modern Transparent at Top (Zero Dividing Line) */
