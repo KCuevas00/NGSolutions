@@ -2743,6 +2743,24 @@ textarea.form-control {
   resize: vertical;
 }
 
+input[type="date"].form-control {
+  cursor: pointer;
+  min-height: 48px;
+}
+
+input[type="date"].form-control::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+input[type="date"].form-control::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .form-status {
   padding: 1rem;
   border-radius: var(--radius-md);

@@ -376,6 +376,22 @@ document.addEventListener('DOMContentLoaded', () => {
     'Sending Information...'
   );
 
+  // Set min date to today for date picker and open calendar on click
+  const targetDateInput = document.getElementById('targetDate');
+  if (targetDateInput && targetDateInput.type === 'date') {
+    const today = new Date().toISOString().split('T')[0];
+    targetDateInput.min = today;
+    targetDateInput.addEventListener('click', () => {
+      if (typeof targetDateInput.showPicker === 'function') {
+        try {
+          targetDateInput.showPicker();
+        } catch (err) {
+          // Handled by browser default
+        }
+      }
+    });
+  }
+
   // 7. Continuous Looping Video Hero Playlist with Safe Cross-Fade
   const videoA = document.getElementById('heroVideoA');
   const videoB = document.getElementById('heroVideoB');
