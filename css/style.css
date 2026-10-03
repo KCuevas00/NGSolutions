@@ -4086,6 +4086,100 @@ input[type="date"].form-control::-webkit-calendar-picker-indicator:hover {
   color: rgba(255, 255, 255, 0.4);
 }
 
+/* Footer Social & Review Links */
+.footer-social-wrapper {
+  margin-top: 1.25rem;
+}
+
+.footer-social-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.65rem;
+}
+
+.footer-social-buttons {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.footer-social-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.footer-social-btn.btn-facebook:hover {
+  border-color: #1877f2;
+  box-shadow: 0 0 12px rgba(24, 119, 242, 0.35);
+}
+
+.footer-social-btn.btn-google:hover {
+  border-color: #ea4335;
+  box-shadow: 0 0 12px rgba(234, 67, 53, 0.35);
+}
+
+/* Top Bar Social Link */
+.top-bar-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.top-bar-social:hover {
+  color: #72d4ff;
+}
+
+.top-bar-social i {
+  color: #1877f2;
+  font-size: 0.92rem;
+}
+
+/* Mobile Drawer Facebook Button */
+.mobile-drawer-btn.mobile-drawer-fb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--primary-deep);
+  border-color: rgba(24, 119, 242, 0.3);
+  background: rgba(24, 119, 242, 0.06);
+}
+
+.mobile-drawer-btn.mobile-drawer-fb:hover {
+  background: rgba(24, 119, 242, 0.12);
+  color: #1877f2;
+}
+
+.mobile-drawer-btn.mobile-drawer-fb i {
+  color: #1877f2;
+  font-size: 1rem;
+}
+
 /* ==========================================================================
    LIGHTBOX MODAL FOR GALLERY
    ========================================================================== */
